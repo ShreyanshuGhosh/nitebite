@@ -3,6 +3,8 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useCartStore } from '@/store/cartStore';
+import { toast } from 'sonner';
 
 export interface Product {
   id: string;
@@ -19,6 +21,13 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
+  const addItem = useCartStore(state => state.addItem);
+  
+  const handleAddToCart = () => {
+    addItem(product);
+    toast.success(`Added ${product.name} to cart`);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -42,7 +51,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
         
         <div className="flex items-center justify-between">
           <span className="text-nitebite-highlight font-semibold">${product.price.toFixed(2)}</span>
-          <Button size="sm" className="bg-nitebite-accent hover:bg-nitebite-accent-light rounded-full h-8 w-8 p-0 flex items-center justify-center">
+          <Button 
+            size="sm" 
+            className="bg-nitebite-accent hover:bg-nitebite-accent-light rounded-full h-8 w-8 p-0 flex items-center justify-center"
+            onClick={handleAddToCart}
+          >
             <Plus className="h-4 w-4" />
           </Button>
         </div>

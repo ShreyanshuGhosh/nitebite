@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Menu, X, ShoppingCart, User } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
+import { useCartStore } from '@/store/cartStore';
 
 interface NavbarProps {
   transparent?: boolean;
@@ -12,6 +13,7 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const itemCount = useCartStore(state => state.getItemCount());
 
   // Handle scroll effect for transparent navbar
   useEffect(() => {
@@ -66,12 +68,16 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
           <Button variant="ghost" size="icon" className="text-nitebite-text hover:text-nitebite-highlight focus-ring">
             <User size={20} />
           </Button>
-          <Button variant="ghost" size="icon" className="text-nitebite-text hover:text-nitebite-highlight relative focus-ring">
-            <ShoppingCart size={20} />
-            <span className="absolute -top-1 -right-1 bg-nitebite-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-scale">
-              0
-            </span>
-          </Button>
+          <Link to="/checkout">
+            <Button variant="ghost" size="icon" className="text-nitebite-text hover:text-nitebite-highlight relative focus-ring">
+              <ShoppingCart size={20} />
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-nitebite-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-scale">
+                  {itemCount}
+                </span>
+              )}
+            </Button>
+          </Link>
           <Button className="bg-nitebite-accent hover:bg-nitebite-accent-light text-white transition duration-300 focus-ring">
             Order Now
           </Button>
@@ -79,12 +85,16 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
 
         {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center space-x-4">
-          <Button variant="ghost" size="icon" className="text-nitebite-text hover:text-nitebite-highlight relative focus-ring">
-            <ShoppingCart size={20} />
-            <span className="absolute -top-1 -right-1 bg-nitebite-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-scale">
-              0
-            </span>
-          </Button>
+          <Link to="/checkout">
+            <Button variant="ghost" size="icon" className="text-nitebite-text hover:text-nitebite-highlight relative focus-ring">
+              <ShoppingCart size={20} />
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-nitebite-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-scale">
+                  {itemCount}
+                </span>
+              )}
+            </Button>
+          </Link>
           <Button 
             variant="ghost" 
             size="icon" 
@@ -132,13 +142,14 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
             >
               Contact
             </Link>
-            <Button 
+            <Link 
+              to="/checkout" 
               className="bg-nitebite-accent hover:bg-nitebite-accent-light text-white text-xl py-6 px-10 rounded-full animate-fade-in-up"
               style={{ animationDelay: '500ms' }}
               onClick={() => setIsMenuOpen(false)}
             >
-              Order Now
-            </Button>
+              Checkout
+            </Link>
           </div>
         </div>
       )}
