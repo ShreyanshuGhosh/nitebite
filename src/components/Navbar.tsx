@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ShoppingCart, User } from 'lucide-react';
+import { Menu, X, ShoppingBox, User } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
 import { useCartStore } from '@/store/cartStore';
@@ -28,13 +28,24 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
   }, [transparent]);
 
   const navbarClass = cn(
-    'fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300 ease-in-out px-4 md:px-8',
+    'fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300 ease-in-out px-4 md:px-8 backdrop-blur-sm',
     {
-      'bg-nitebite-dark/95 backdrop-blur-md shadow-md': isScrolled || !transparent,
+      'bg-nitebite-dark/95 backdrop-blur-md shadow-lg': isScrolled || !transparent,
       'bg-transparent': transparent && !isScrolled,
       'bg-nitebite-dark': isMenuOpen
     }
   );
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 100,
+        behavior: 'smooth'
+      });
+      setIsMenuOpen(false);
+    }
+  };
 
   return (
     <nav className={navbarClass}>
@@ -52,25 +63,31 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
           <Link to="/" className="text-nitebite-text hover:text-nitebite-highlight transition duration-200 animated-border">
             Home
           </Link>
-          <Link to="/menu" className="text-nitebite-text hover:text-nitebite-highlight transition duration-200 animated-border">
+          <button 
+            onClick={() => scrollToSection('featured-items')} 
+            className="text-nitebite-text hover:text-nitebite-highlight transition duration-200 animated-border"
+          >
             Menu
-          </Link>
+          </button>
           <Link to="/about" className="text-nitebite-text hover:text-nitebite-highlight transition duration-200 animated-border">
             About
           </Link>
-          <Link to="/contact" className="text-nitebite-text hover:text-nitebite-highlight transition duration-200 animated-border">
+          <button 
+            onClick={() => scrollToSection('footer')} 
+            className="text-nitebite-text hover:text-nitebite-highlight transition duration-200 animated-border"
+          >
             Contact
-          </Link>
+          </button>
         </div>
 
         {/* Action Buttons */}
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="ghost" size="icon" className="text-nitebite-text hover:text-nitebite-highlight focus-ring">
+          <Button variant="ghost" size="icon" className="text-nitebite-text hover:text-nitebite-highlight focus-ring glassmorphic-icon">
             <User size={20} />
           </Button>
           <Link to="/checkout">
-            <Button variant="ghost" size="icon" className="text-nitebite-text hover:text-nitebite-highlight relative focus-ring">
-              <ShoppingCart size={20} />
+            <Button variant="ghost" size="icon" className="text-nitebite-text hover:text-nitebite-highlight relative focus-ring glassmorphic-icon">
+              <ShoppingBox size={20} />
               {itemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-nitebite-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-scale">
                   {itemCount}
@@ -78,7 +95,7 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
               )}
             </Button>
           </Link>
-          <Button className="bg-nitebite-accent hover:bg-nitebite-accent-light text-white transition duration-300 focus-ring">
+          <Button className="bg-nitebite-accent hover:bg-nitebite-accent-light text-white transition duration-300 focus-ring glassmorphic-button">
             Order Now
           </Button>
         </div>
@@ -86,8 +103,8 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
         {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center space-x-4">
           <Link to="/checkout">
-            <Button variant="ghost" size="icon" className="text-nitebite-text hover:text-nitebite-highlight relative focus-ring">
-              <ShoppingCart size={20} />
+            <Button variant="ghost" size="icon" className="text-nitebite-text hover:text-nitebite-highlight relative focus-ring glassmorphic-icon">
+              <ShoppingBox size={20} />
               {itemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-nitebite-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-scale">
                   {itemCount}
@@ -98,7 +115,7 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
           <Button 
             variant="ghost" 
             size="icon" 
-            className="text-nitebite-text hover:text-nitebite-highlight focus-ring"
+            className="text-nitebite-text hover:text-nitebite-highlight focus-ring glassmorphic-icon"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -108,7 +125,7 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-16 bg-nitebite-dark z-40 animate-fade-in">
+        <div className="md:hidden fixed inset-0 top-16 bg-nitebite-dark/95 backdrop-blur-lg z-40 animate-fade-in">
           <div className="flex flex-col items-center justify-center h-full space-y-8 p-4">
             <Link 
               to="/" 
@@ -118,14 +135,13 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
             >
               Home
             </Link>
-            <Link 
-              to="/menu" 
+            <button 
               className="text-nitebite-text hover:text-nitebite-highlight text-2xl animate-fade-in-up" 
               style={{ animationDelay: '200ms' }}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => scrollToSection('featured-items')}
             >
               Menu
-            </Link>
+            </button>
             <Link 
               to="/about" 
               className="text-nitebite-text hover:text-nitebite-highlight text-2xl animate-fade-in-up" 
@@ -134,21 +150,20 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
             >
               About
             </Link>
-            <Link 
-              to="/contact" 
+            <button 
               className="text-nitebite-text hover:text-nitebite-highlight text-2xl animate-fade-in-up" 
               style={{ animationDelay: '400ms' }}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => scrollToSection('footer')}
             >
               Contact
-            </Link>
+            </button>
             <Link 
               to="/checkout" 
-              className="bg-nitebite-accent hover:bg-nitebite-accent-light text-white text-xl py-6 px-10 rounded-full animate-fade-in-up"
+              className="glassmorphic-button text-white text-xl py-6 px-10 rounded-full animate-fade-in-up"
               style={{ animationDelay: '500ms' }}
               onClick={() => setIsMenuOpen(false)}
             >
-              Checkout
+              Your Box
             </Link>
           </div>
         </div>

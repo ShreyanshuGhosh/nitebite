@@ -25,7 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
   
   const handleAddToCart = () => {
     addItem(product);
-    toast.success(`Added ${product.name} to cart`);
+    toast.success(`Added ${product.name} to box`);
   };
 
   return (
@@ -33,7 +33,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
-      className="glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg group"
+      className="glassmorphic-card rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-glow group"
     >
       <div className="relative aspect-square overflow-hidden">
         <img 
@@ -53,8 +53,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
           <span className="text-nitebite-highlight font-semibold">${product.price.toFixed(2)}</span>
           <Button 
             size="sm" 
-            className="bg-nitebite-accent hover:bg-nitebite-accent-light rounded-full h-8 w-8 p-0 flex items-center justify-center"
+            className="glassmorphic-button rounded-full h-8 w-8 p-0 flex items-center justify-center shadow-glow-sm"
             onClick={handleAddToCart}
+            aria-label="Add to Box"
           >
             <Plus className="h-4 w-4" />
           </Button>

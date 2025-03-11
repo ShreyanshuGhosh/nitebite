@@ -6,6 +6,7 @@ import CategorySelector from '@/components/CategorySelector';
 import FeaturedProducts from '@/components/FeaturedProducts';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
+import FloatingBox from '@/components/FloatingBox';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Index = () => {
@@ -28,6 +29,7 @@ const Index = () => {
           <CategorySelector />
           <FeaturedProducts />
         </main>
+        <FloatingBox />
         <BackToTop />
         <Footer />
       </motion.div>

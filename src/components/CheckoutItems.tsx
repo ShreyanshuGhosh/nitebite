@@ -9,11 +9,11 @@ const CheckoutItems = () => {
 
   if (items.length === 0) {
     return (
-      <div className="glass-card p-6 rounded-2xl text-center">
-        <h3 className="text-xl font-medium text-nitebite-highlight mb-4">Your cart is empty</h3>
+      <div className="glassmorphic-card p-6 rounded-2xl text-center">
+        <h3 className="text-xl font-medium text-nitebite-highlight mb-4">Your box is empty</h3>
         <p className="text-nitebite-text-muted mb-6">Add some items to get started!</p>
         <Button 
-          className="bg-nitebite-accent hover:bg-nitebite-accent-light text-white"
+          className="glassmorphic-button text-white"
           onClick={() => window.location.href = '/'}
         >
           Browse Menu
@@ -23,12 +23,12 @@ const CheckoutItems = () => {
   }
 
   return (
-    <div className="glass-card p-4 md:p-6 rounded-2xl">
+    <div className="glassmorphic-card p-4 md:p-6 rounded-2xl">
       <h2 className="text-xl font-medium text-nitebite-highlight mb-4">Your Order</h2>
       
       <div className="space-y-4">
         {items.map((item) => (
-          <div key={item.id} className="flex items-center gap-4 p-4 bg-nitebite-dark-accent rounded-xl">
+          <div key={item.id} className="flex items-center gap-4 p-4 bg-nitebite-dark-accent/60 backdrop-blur-md rounded-xl">
             <img 
               src={item.image} 
               alt={item.name} 
@@ -44,7 +44,7 @@ const CheckoutItems = () => {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="rounded-full h-8 w-8 bg-nitebite-dark text-nitebite-text hover:text-nitebite-highlight"
+                className="rounded-full h-8 w-8 bg-nitebite-dark text-nitebite-text hover:text-nitebite-highlight shadow-glow-sm"
                 onClick={() => updateItemQuantity(item.id, Math.max(1, item.quantity - 1))}
                 disabled={item.quantity <= 1}
               >
@@ -58,7 +58,7 @@ const CheckoutItems = () => {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="rounded-full h-8 w-8 bg-nitebite-dark text-nitebite-text hover:text-nitebite-highlight"
+                className="rounded-full h-8 w-8 bg-nitebite-dark text-nitebite-text hover:text-nitebite-highlight shadow-glow-sm"
                 onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
               >
                 <Plus className="h-4 w-4" />

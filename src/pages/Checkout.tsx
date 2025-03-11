@@ -25,7 +25,7 @@ const Checkout = () => {
       <main className="pt-24 pb-16">
         <div className="page-container">
           <h1 className="text-3xl md:text-4xl font-bold mb-8 text-nitebite-highlight">
-            Checkout
+            Your Box
           </h1>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

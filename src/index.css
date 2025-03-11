@@ -75,6 +75,38 @@
     @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-glass;
   }
   
+  .glassmorphic-card {
+    @apply backdrop-blur-xl bg-white/10 border border-white/20 shadow-lg transition-all duration-300;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  }
+  
+  .glassmorphic-button {
+    @apply bg-nitebite-accent hover:bg-nitebite-accent-light text-white transition-all duration-300;
+    box-shadow: 0 0 15px rgba(74, 111, 165, 0.5);
+  }
+  
+  .glassmorphic-ghost-button {
+    @apply bg-white/5 hover:bg-white/10 transition-all duration-300;
+    backdrop-filter: blur(5px);
+  }
+  
+  .glassmorphic-icon {
+    @apply bg-white/5 transition-all duration-300;
+    backdrop-filter: blur(5px);
+  }
+  
+  .glassmorphic-panel {
+    @apply bg-nitebite-dark-accent/80 backdrop-blur-xl border border-white/20;
+  }
+  
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(74, 111, 165, 0.3);
+  }
+  
+  .shadow-glow-sm {
+    box-shadow: 0 0 10px rgba(74, 111, 165, 0.2);
+  }
+  
   .neo-blur {
     @apply backdrop-blur-2xl bg-black/40 border border-white/10;
   }
@@ -98,4 +130,18 @@
   .page-container {
     @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
+}
+
+/* Animation keyframes */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(74, 111, 165, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(74, 111, 165, 0.5);
+  }
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
 }

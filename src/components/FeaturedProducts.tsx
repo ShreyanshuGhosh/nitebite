@@ -74,7 +74,7 @@ const products: Product[] = [
 
 const FeaturedProducts: React.FC = () => {
   return (
-    <div className="py-16 bg-nitebite-dark">
+    <div id="featured-items" className="py-16 bg-nitebite-dark">
       <div className="page-container">
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-12">
           <div>
@@ -85,7 +85,7 @@ const FeaturedProducts: React.FC = () => {
           </div>
           <Button 
             variant="ghost" 
-            className="text-nitebite-accent hover:text-nitebite-accent-light mt-4 md:mt-0 self-start animate-fade-in flex items-center gap-2 group"
+            className="text-nitebite-accent hover:text-nitebite-accent-light mt-4 md:mt-0 self-start animate-fade-in flex items-center gap-2 group glassmorphic-ghost-button"
             style={{ animationDelay: '200ms' }}
           >
             View All Products 

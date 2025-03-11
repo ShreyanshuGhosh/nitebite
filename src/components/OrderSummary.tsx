@@ -16,7 +16,7 @@ const OrderSummary = () => {
 
   const handleCheckout = () => {
     if (items.length === 0) {
-      toast.error("Your cart is empty");
+      toast.error("Your box is empty");
       return;
     }
     
@@ -31,7 +31,7 @@ const OrderSummary = () => {
   };
 
   return (
-    <div className="glass-card p-4 md:p-6 rounded-2xl sticky top-24">
+    <div className="glassmorphic-card p-4 md:p-6 rounded-2xl sticky top-24 shadow-glow">
       <h2 className="text-xl font-medium text-nitebite-highlight mb-4">Order Summary</h2>
       
       <div className="space-y-3 mb-6">
@@ -50,7 +50,7 @@ const OrderSummary = () => {
           <span>${serviceFee.toFixed(2)}</span>
         </div>
         
-        <div className="border-t border-nitebite-dark-accent my-2 pt-2"></div>
+        <div className="border-t border-white/10 my-2 pt-2"></div>
         
         <div className="flex justify-between font-medium text-nitebite-highlight">
           <span>Total</span>
@@ -59,7 +59,7 @@ const OrderSummary = () => {
       </div>
       
       <Button 
-        className="w-full bg-nitebite-accent hover:bg-nitebite-accent-light text-white py-6 text-base rounded-full transition-all duration-300 flex items-center justify-center gap-2 group"
+        className="w-full glassmorphic-button text-white py-6 text-base rounded-full transition-all duration-300 flex items-center justify-center gap-2 group shadow-glow"
         onClick={handleCheckout}
         disabled={isProcessing || items.length === 0}
       >
