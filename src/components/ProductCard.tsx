@@ -33,6 +33,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
+      whileHover={{ 
+        scale: 1.03,
+        transition: { duration: 0.3 }
+      }}
       className="glassmorphic-card rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-glow group"
     >
       <div className="relative aspect-square overflow-hidden">

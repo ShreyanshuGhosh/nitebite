@@ -14,6 +14,7 @@ const categories: Category[] = [
   { id: 'drinks', name: 'Drinks', icon: '🥤' },
   { id: 'coffee', name: 'Coffee', icon: '☕' },
   { id: 'chocolate', name: 'Chocolate', icon: '🍫' },
+  { id: 'biscuits', name: 'Biscuits', icon: '🍪' },
 ];
 
 const CategorySelector: React.FC = () => {

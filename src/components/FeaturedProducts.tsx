@@ -1,10 +1,9 @@
-
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import ProductCard, { Product } from './ProductCard';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-// Sample product data
 const products: Product[] = [
   {
     id: '1',
@@ -70,9 +69,151 @@ const products: Product[] = [
     category: 'chocolate',
     description: 'Deluxe chocolate with hazelnut center and crisp wafer shell',
   },
+  {
+    id: '9',
+    name: 'Oreo Cookies',
+    price: 2.99,
+    image: 'https://images.unsplash.com/photo-1590080875580-b6ba70050d59?q=80&w=1000',
+    category: 'biscuits',
+    description: 'Classic chocolate sandwich cookies with vanilla cream filling',
+  },
+  {
+    id: '10',
+    name: 'Digestive Biscuits',
+    price: 3.49,
+    image: 'https://images.unsplash.com/photo-1597733153203-a54d0fbc47de?q=80&w=1000',
+    category: 'biscuits',
+    description: 'Crunchy whole wheat biscuits perfect with your late night tea',
+  },
+  {
+    id: '11',
+    name: 'Chips Ahoy! Cookies',
+    price: 3.79,
+    image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=1000',
+    category: 'biscuits',
+    description: 'Chocolate chip cookies filled with real chocolate chips',
+  },
+  {
+    id: '12',
+    name: 'Red Bull Energy Drink',
+    price: 3.99,
+    image: 'https://images.unsplash.com/photo-1613577041053-f9f83b2d4165?q=80&w=1000',
+    category: 'drinks',
+    description: 'Energy drink that gives you wings for those late study sessions',
+  },
 ];
 
 const FeaturedProducts: React.FC = () => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(false);
+
+  useEffect(() => {
+    const checkScrollability = () => {
+      if (scrollContainerRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+        setCanScrollLeft(scrollLeft > 0);
+        setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+      }
+    };
+
+    checkScrollability();
+    window.addEventListener('resize', checkScrollability);
+
+    return () => {
+      window.removeEventListener('resize', checkScrollability);
+    };
+  }, []);
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    
+    const handleScroll = () => {
+      if (scrollContainer) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
+        setCanScrollLeft(scrollLeft > 0);
+        setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+      }
+    };
+
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll);
+      return () => scrollContainer.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
+
+  useEffect(() => {
+    let autoScrollInterval: NodeJS.Timeout | null = null;
+    
+    const startAutoScroll = () => {
+      if (scrollContainerRef.current && !isAutoScrolling) {
+        setIsAutoScrolling(true);
+        autoScrollInterval = setInterval(() => {
+          if (scrollContainerRef.current) {
+            const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+            
+            if (scrollLeft >= scrollWidth - clientWidth - 10) {
+              scrollContainerRef.current.scrollTo({
+                left: 0,
+                behavior: 'smooth'
+              });
+            } else {
+              scrollContainerRef.current.scrollBy({
+                left: 300,
+                behavior: 'smooth'
+              });
+            }
+          }
+        }, 5000);
+      }
+    };
+
+    const stopAutoScroll = () => {
+      if (autoScrollInterval) {
+        clearInterval(autoScrollInterval);
+        setIsAutoScrolling(false);
+      }
+    };
+
+    const timer = setTimeout(startAutoScroll, 5000);
+    
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener('mouseenter', stopAutoScroll);
+      scrollContainer.addEventListener('touchstart', stopAutoScroll);
+    }
+
+    return () => {
+      clearTimeout(timer);
+      if (autoScrollInterval) clearInterval(autoScrollInterval);
+      if (scrollContainer) {
+        scrollContainer.removeEventListener('mouseenter', stopAutoScroll);
+        scrollContainer.removeEventListener('touchstart', stopAutoScroll);
+      }
+    };
+  }, [isAutoScrolling]);
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: -300,
+        behavior: 'smooth'
+      });
+      setIsAutoScrolling(false);
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: 300,
+        behavior: 'smooth'
+      });
+      setIsAutoScrolling(false);
+    }
+  };
+
   return (
     <div id="featured-items" className="py-16 bg-nitebite-dark">
       <div className="page-container">
@@ -93,10 +234,48 @@ const FeaturedProducts: React.FC = () => {
           </Button>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((product, index) => (
-            <ProductCard key={product.id} product={product} index={index} />
-          ))}
+        <div className="relative">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className={cn(
+              "absolute left-0 top-1/2 -translate-y-1/2 z-10 h-12 w-12 rounded-full bg-nitebite-dark-accent/80 backdrop-blur-lg border border-white/10 text-nitebite-text shadow-glow transition-all", 
+              canScrollLeft ? "opacity-100" : "opacity-0 pointer-events-none"
+            )}
+            onClick={scrollLeft}
+            aria-label="Scroll left"
+          >
+            <ChevronLeft size={24} />
+          </Button>
+
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-6 overflow-x-auto py-4 px-2 scrollbar-none scroll-smooth"
+            style={{ scrollSnapType: 'x mandatory' }}
+          >
+            {products.map((product, index) => (
+              <div 
+                key={product.id} 
+                className="min-w-[280px] sm:min-w-[300px]"
+                style={{ scrollSnapAlign: 'start' }}
+              >
+                <ProductCard product={product} index={index} />
+              </div>
+            ))}
+          </div>
+
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className={cn(
+              "absolute right-0 top-1/2 -translate-y-1/2 z-10 h-12 w-12 rounded-full bg-nitebite-dark-accent/80 backdrop-blur-lg border border-white/10 text-nitebite-text shadow-glow transition-all", 
+              canScrollRight ? "opacity-100" : "opacity-0 pointer-events-none"
+            )}
+            onClick={scrollRight}
+            aria-label="Scroll right"
+          >
+            <ChevronRight size={24} />
+          </Button>
         </div>
       </div>
     </div>

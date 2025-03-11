@@ -68,13 +68,13 @@ export default {
           ring: 'hsl(var(--sidebar-ring))'
         },
         nitebite: {
-          dark: '#111827', // Updated to darker blue-black
-          'dark-accent': '#1E293B', // Updated to a slate blue shade
-          accent: '#38BDF8', // Updated to bright blue
+          dark: '#111827', // Dark blue-black background
+          'dark-accent': '#1E293B', // Slate blue shade
+          accent: '#38BDF8', // Bright blue
           'accent-light': '#7DD3FC', // Lighter blue
           text: '#F3F4F6', // Light gray
           'text-muted': '#9CA3AF', // Muted gray
-          highlight: '#FFD700', // Bright yellow/gold for highlights
+          highlight: '#D6BCFA', // Light purple for highlights (changed from yellow)
           success: '#10B981', // Emerald green
           warning: '#F59E0B', // Amber
         }
