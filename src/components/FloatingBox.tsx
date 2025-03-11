@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ShoppingBox, ArrowRight, X } from 'lucide-react';
+import { ShoppingBag, ArrowRight, X } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -50,7 +50,7 @@ const FloatingBox = () => {
           >
             <div className="flex items-center gap-3">
               <div className="relative">
-                <ShoppingBox className="h-6 w-6 text-nitebite-highlight" />
+                <ShoppingBag className="h-6 w-6 text-nitebite-highlight" />
                 <span className="absolute -top-2 -right-2 bg-nitebite-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                   {itemCount}
                 </span>
@@ -73,11 +73,10 @@ const FloatingBox = () => {
             <div className="flex items-center gap-3">
               <p className="text-nitebite-highlight font-medium">${subtotal.toFixed(2)}</p>
               <Button 
-                as={Link} 
-                to="/checkout"
                 className="glassmorphic-button py-2 px-4 rounded-lg text-sm"
+                asChild
               >
-                Checkout
+                <Link to="/checkout">Checkout</Link>
               </Button>
             </div>
           </div>

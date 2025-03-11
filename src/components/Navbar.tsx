@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ShoppingBox, User } from 'lucide-react';
+import { Menu, X, ShoppingBag, User } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
 import { useCartStore } from '@/store/cartStore';
@@ -85,16 +85,21 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
           <Button variant="ghost" size="icon" className="text-nitebite-text hover:text-nitebite-highlight focus-ring glassmorphic-icon">
             <User size={20} />
           </Button>
-          <Link to="/checkout">
-            <Button variant="ghost" size="icon" className="text-nitebite-text hover:text-nitebite-highlight relative focus-ring glassmorphic-icon">
-              <ShoppingBox size={20} />
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="text-nitebite-text hover:text-nitebite-highlight relative focus-ring glassmorphic-icon"
+            asChild
+          >
+            <Link to="/checkout">
+              <ShoppingBag size={20} />
               {itemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-nitebite-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-scale">
                   {itemCount}
                 </span>
               )}
-            </Button>
-          </Link>
+            </Link>
+          </Button>
           <Button className="bg-nitebite-accent hover:bg-nitebite-accent-light text-white transition duration-300 focus-ring glassmorphic-button">
             Order Now
           </Button>
@@ -102,16 +107,21 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
 
         {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center space-x-4">
-          <Link to="/checkout">
-            <Button variant="ghost" size="icon" className="text-nitebite-text hover:text-nitebite-highlight relative focus-ring glassmorphic-icon">
-              <ShoppingBox size={20} />
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="text-nitebite-text hover:text-nitebite-highlight relative focus-ring glassmorphic-icon"
+            asChild
+          >
+            <Link to="/checkout">
+              <ShoppingBag size={20} />
               {itemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-nitebite-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-scale">
                   {itemCount}
                 </span>
               )}
-            </Button>
-          </Link>
+            </Link>
+          </Button>
           <Button 
             variant="ghost" 
             size="icon" 
