@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ArrowLeft, ShoppingBag, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProductCard, { Product } from '@/components/ProductCard';
@@ -12,7 +12,13 @@ import { useCartStore } from '@/store/cartStore';
 import { products } from '@/components/ProductsData';
 
 const Products = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('chips');
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const categoryFromUrl = queryParams.get('category');
+  
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    categoryFromUrl || 'chips'
+  );
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const navigate = useNavigate();
   const itemCount = useCartStore(state => state.getItemCount());
@@ -33,6 +39,13 @@ const Products = () => {
     );
     setFilteredProducts(filtered);
   }, [selectedCategory]);
+
+  // Update category when URL changes
+  useEffect(() => {
+    if (categoryFromUrl && categories.some(cat => cat.id === categoryFromUrl)) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [categoryFromUrl, categories]);
 
   // Get icon for category
   function getCategoryIcon(category: string): string {

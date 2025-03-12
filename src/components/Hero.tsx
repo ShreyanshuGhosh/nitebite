@@ -4,10 +4,10 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
 const Hero: React.FC = () => {
-  const scrollToCategories = () => {
-    const categorySection = document.getElementById('category-section');
-    if (categorySection) {
-      categorySection.scrollIntoView({ behavior: 'smooth' });
+  const scrollToFeaturedItems = () => {
+    const featuredItemsSection = document.getElementById('featured-items');
+    if (featuredItemsSection) {
+      featuredItemsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
           animationDelay: '600ms'
         }}>
           <Button 
-            onClick={scrollToCategories}
+            onClick={scrollToFeaturedItems}
             className="bg-nitebite-accent hover:bg-nitebite-accent-light text-white px-6 py-5 sm:px-8 sm:py-6 text-base sm:text-lg rounded-full transition-all duration-300 flex items-center gap-2 group"
           >
             Order Now

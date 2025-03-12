@@ -4,30 +4,26 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 const OrderSummary = () => {
   const { items, calculateSubtotal, clearCart } = useCartStore();
   const [isProcessing, setIsProcessing] = useState(false);
+  const navigate = useNavigate();
   
   const subtotal = calculateSubtotal();
   const deliveryFee = subtotal > 0 ? 2.99 : 0;
   const serviceFee = subtotal > 0 ? subtotal * 0.05 : 0;
   const total = subtotal + deliveryFee + serviceFee;
 
-  const handleCheckout = () => {
+  const handleProceed = () => {
     if (items.length === 0) {
       toast.error("Your box is empty");
       return;
     }
     
-    setIsProcessing(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      toast.success("Order placed successfully!");
-      clearCart();
-      setIsProcessing(false);
-    }, 2000);
+    // Navigate to order details page
+    navigate('/order-details');
   };
 
   return (
@@ -60,10 +56,10 @@ const OrderSummary = () => {
       
       <Button 
         className="w-full glassmorphic-button text-white py-6 text-base rounded-full transition-all duration-300 flex items-center justify-center gap-2 group shadow-glow"
-        onClick={handleCheckout}
+        onClick={handleProceed}
         disabled={isProcessing || items.length === 0}
       >
-        {isProcessing ? 'Processing...' : 'Proceed to Payment'}
+        {isProcessing ? 'Processing...' : 'Proceed to Order Details'}
         <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
       </Button>
       

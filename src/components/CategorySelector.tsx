@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { useNavigate } from 'react-router-dom';
 
 interface Category {
   id: string;
@@ -19,6 +20,13 @@ const categories: Category[] = [
 
 const CategorySelector: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('chips');
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    // Navigate to products page with the selected category
+    navigate(`/products?category=${categoryId}`);
+  };
 
   return (
     <div className="py-10 md:py-16 bg-nitebite-dark-accent">
@@ -36,7 +44,7 @@ const CategorySelector: React.FC = () => {
               key={category.id}
               category={category}
               isSelected={selectedCategory === category.id}
-              onClick={() => setSelectedCategory(category.id)}
+              onClick={() => handleCategoryClick(category.id)}
               delay={index * 100}
             />
           ))}
