@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ArrowLeft, ShoppingBag, Search } from 'lucide-react';
@@ -38,6 +37,10 @@ const Products = () => {
       (product) => product.category === selectedCategory
     );
     setFilteredProducts(filtered);
+    
+    // Update URL without reloading the page
+    const newUrl = `/products?category=${selectedCategory}`;
+    window.history.pushState({ path: newUrl }, '', newUrl);
   }, [selectedCategory]);
 
   // Update category when URL changes

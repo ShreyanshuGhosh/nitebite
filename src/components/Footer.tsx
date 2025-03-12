@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, MapPin, Phone, Instagram, Twitter, Facebook } from 'lucide-react';
+import { Clock, MapPin, Phone, Mail, Instagram, Linkedin, Facebook } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -14,13 +15,13 @@ const Footer: React.FC = () => {
               Your 10-minute delivery service for late-night cravings. We bring snacks, drinks, and more right to your door.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-nitebite-text-muted hover:text-nitebite-accent transition duration-300">
+              <a href="https://instagram.com/nitebite" target="_blank" rel="noopener noreferrer" className="text-nitebite-text-muted hover:text-nitebite-accent transition duration-300">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-nitebite-text-muted hover:text-nitebite-accent transition duration-300">
-                <Twitter size={20} />
+              <a href="https://linkedin.com/company/nitebite" target="_blank" rel="noopener noreferrer" className="text-nitebite-text-muted hover:text-nitebite-accent transition duration-300">
+                <Linkedin size={20} />
               </a>
-              <a href="#" className="text-nitebite-text-muted hover:text-nitebite-accent transition duration-300">
+              <a href="https://facebook.com/nitebite" target="_blank" rel="noopener noreferrer" className="text-nitebite-text-muted hover:text-nitebite-accent transition duration-300">
                 <Facebook size={20} />
               </a>
             </div>
@@ -72,6 +73,12 @@ const Footer: React.FC = () => {
                 <Phone className="text-nitebite-accent w-5 h-5 mr-3 mt-1 flex-shrink-0" />
                 <span className="text-nitebite-text-muted">
                   (555) 123-4567
+                </span>
+              </li>
+              <li className="flex items-start">
+                <Mail className="text-nitebite-accent w-5 h-5 mr-3 mt-1 flex-shrink-0" />
+                <span className="text-nitebite-text-muted">
+                  contact@nitebite.com
                 </span>
               </li>
               <li className="flex items-start">

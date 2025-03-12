@@ -5,11 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowRight, ShoppingBag } from 'lucide-react';
+import { ArrowRight, ArrowLeft, ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { toast } from 'sonner';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 
 const OrderDetails = () => {
   const [whatsappNumber, setWhatsappNumber] = useState('');
@@ -71,9 +70,20 @@ const OrderDetails = () => {
       <Navbar transparent={false} />
       <main className="pt-24 pb-28 md:pb-16">
         <div className="page-container max-w-lg mx-auto">
-          <h1 className="text-3xl font-bold mb-8 text-nitebite-highlight">
-            Order Details
-          </h1>
+          <div className="flex items-center mb-8">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="glassmorphic-ghost-button rounded-full mr-4 sticky top-24"
+              onClick={() => navigate('/checkout')}
+              aria-label="Go back"
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <h1 className="text-3xl font-bold text-nitebite-highlight">
+              Order Details
+            </h1>
+          </div>
           
           <div className="glassmorphic-card p-4 md:p-6 rounded-2xl mb-8">
             <h2 className="text-xl font-medium text-nitebite-highlight mb-6">Delivery Information</h2>
@@ -173,8 +183,6 @@ const OrderDetails = () => {
           </Button>
         </div>
       </div>
-      
-      <Footer />
     </motion.div>
   );
 };
