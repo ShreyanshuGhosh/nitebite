@@ -1,107 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
-import ProductCard, { Product } from './ProductCard';
+import { Link } from 'react-router-dom';
+import ProductCard from './ProductCard';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
-const products: Product[] = [
-  {
-    id: '1',
-    name: 'Doritos Nacho Cheese',
-    price: 2.99,
-    image: 'https://images.unsplash.com/photo-1613919113640-25732ec5e61f?q=80&w=1000',
-    category: 'chips',
-    description: 'Bold nacho cheese flavored tortilla chips for your late night snacking',
-  },
-  {
-    id: '2',
-    name: 'Monster Energy Drink',
-    price: 3.49,
-    image: 'https://images.unsplash.com/photo-1622543925917-763c34d1a86e?q=80&w=1000',
-    category: 'drinks',
-    description: 'Energy drink to keep you going through those late nights',
-  },
-  {
-    id: '3',
-    name: 'Starbucks Cold Brew',
-    price: 4.99,
-    image: 'https://images.unsplash.com/photo-1575037614876-c38a4d44f5b8?q=80&w=1000',
-    category: 'coffee',
-    description: 'Smooth, delicious cold brew coffee to satisfy your caffeine cravings',
-  },
-  {
-    id: '4',
-    name: 'Lindt Dark Chocolate',
-    price: 3.99,
-    image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?q=80&w=1000',
-    category: 'chocolate',
-    description: 'Premium dark chocolate with rich flavor and smooth texture',
-  },
-  {
-    id: '5',
-    name: 'Lay\'s Classic Chips',
-    price: 2.49,
-    image: 'https://images.unsplash.com/photo-1566478989037-eec170784d0b?q=80&w=1000',
-    category: 'chips',
-    description: 'Classic potato chips with the perfect amount of salt',
-  },
-  {
-    id: '6',
-    name: 'Coca-Cola Zero',
-    price: 1.99,
-    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=1000',
-    category: 'drinks',
-    description: 'Zero sugar cola with the classic Coca-Cola taste',
-  },
-  {
-    id: '7',
-    name: 'Espresso Shot',
-    price: 2.99,
-    image: 'https://images.unsplash.com/photo-1520031607889-97ba0c7190ff?q=80&w=1000',
-    category: 'coffee',
-    description: 'Quick shot of espresso for an immediate caffeine boost',
-  },
-  {
-    id: '8',
-    name: 'Ferrero Rocher',
-    price: 5.99,
-    image: 'https://images.unsplash.com/photo-1548907040-4baa42d10919?q=80&w=1000',
-    category: 'chocolate',
-    description: 'Deluxe chocolate with hazelnut center and crisp wafer shell',
-  },
-  {
-    id: '9',
-    name: 'Oreo Cookies',
-    price: 2.99,
-    image: 'https://images.unsplash.com/photo-1590080875580-b6ba70050d59?q=80&w=1000',
-    category: 'biscuits',
-    description: 'Classic chocolate sandwich cookies with vanilla cream filling',
-  },
-  {
-    id: '10',
-    name: 'Digestive Biscuits',
-    price: 3.49,
-    image: 'https://images.unsplash.com/photo-1597733153203-a54d0fbc47de?q=80&w=1000',
-    category: 'biscuits',
-    description: 'Crunchy whole wheat biscuits perfect with your late night tea',
-  },
-  {
-    id: '11',
-    name: 'Chips Ahoy! Cookies',
-    price: 3.79,
-    image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=1000',
-    category: 'biscuits',
-    description: 'Chocolate chip cookies filled with real chocolate chips',
-  },
-  {
-    id: '12',
-    name: 'Red Bull Energy Drink',
-    price: 3.99,
-    image: 'https://images.unsplash.com/photo-1613577041053-f9f83b2d4165?q=80&w=1000',
-    category: 'drinks',
-    description: 'Energy drink that gives you wings for those late study sessions',
-  },
-];
+import { products } from './ProductsData';
 
 const FeaturedProducts: React.FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -224,14 +127,16 @@ const FeaturedProducts: React.FC = () => {
               Our most popular late-night snacks and beverages
             </p>
           </div>
-          <Button 
-            variant="ghost" 
-            className="text-nitebite-accent hover:text-nitebite-accent-light mt-4 md:mt-0 self-start animate-fade-in flex items-center gap-2 group glassmorphic-ghost-button"
-            style={{ animationDelay: '200ms' }}
-          >
-            View All Products 
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </Button>
+          <Link to="/products">
+            <Button 
+              variant="ghost" 
+              className="text-nitebite-accent hover:text-nitebite-accent-light mt-4 md:mt-0 self-start animate-fade-in flex items-center gap-2 group glassmorphic-ghost-button"
+              style={{ animationDelay: '200ms' }}
+            >
+              View All Products 
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Button>
+          </Link>
         </div>
         
         <div className="relative">
