@@ -28,7 +28,7 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
   }, [transparent]);
 
   const navbarClass = cn(
-    'fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300 ease-in-out px-4 md:px-8 backdrop-blur-sm',
+    'fixed top-0 left-0 right-0 z-50 py-3 md:py-4 transition-all duration-300 ease-in-out px-3 md:px-8 backdrop-blur-sm',
     {
       'bg-nitebite-dark/95 backdrop-blur-md shadow-lg': isScrolled || !transparent,
       'bg-transparent': transparent && !isScrolled,
@@ -40,7 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
     const section = document.getElementById(sectionId);
     if (section) {
       window.scrollTo({
-        top: section.offsetTop - 100,
+        top: section.offsetTop - 80,
         behavior: 'smooth'
       });
       setIsMenuOpen(false);
@@ -55,7 +55,7 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
           to="/" 
           className="flex items-center space-x-2 text-nitebite-highlight font-bold text-xl"
         >
-          <span className="text-gradient-accent text-2xl">nitebite</span>
+          <span className="text-gradient-accent text-xl md:text-2xl">nitebite</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -64,7 +64,7 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
             Home
           </Link>
           <button 
-            onClick={() => scrollToSection('featured-items')} 
+            onClick={() => scrollToSection('category-section')} 
             className="text-nitebite-text hover:text-nitebite-highlight transition duration-200 animated-border"
           >
             Menu
@@ -100,23 +100,26 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
               )}
             </Link>
           </Button>
-          <Button className="bg-nitebite-accent hover:bg-nitebite-accent-light text-white transition duration-300 focus-ring glassmorphic-button">
+          <Button 
+            className="bg-nitebite-accent hover:bg-nitebite-accent-light text-white transition duration-300 focus-ring glassmorphic-button"
+            onClick={() => scrollToSection('category-section')}
+          >
             Order Now
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex md:hidden items-center space-x-4">
+        <div className="flex md:hidden items-center space-x-3">
           <Button 
             variant="ghost" 
             size="icon" 
-            className="text-nitebite-text hover:text-nitebite-highlight relative focus-ring glassmorphic-icon"
+            className="text-nitebite-text hover:text-nitebite-highlight relative focus-ring glassmorphic-icon h-9 w-9"
             asChild
           >
             <Link to="/checkout">
-              <ShoppingBag size={20} />
+              <ShoppingBag size={18} />
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-nitebite-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-scale">
+                <span className="absolute -top-1 -right-1 bg-nitebite-accent text-white text-xs rounded-full w-4 h-4 flex items-center justify-center animate-scale">
                   {itemCount}
                 </span>
               )}
@@ -125,56 +128,58 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
           <Button 
             variant="ghost" 
             size="icon" 
-            className="text-nitebite-text hover:text-nitebite-highlight focus-ring glassmorphic-icon"
+            className="text-nitebite-text hover:text-nitebite-highlight focus-ring glassmorphic-icon h-9 w-9"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
           </Button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-16 bg-nitebite-dark/95 backdrop-blur-lg z-40 animate-fade-in">
+        <div className="md:hidden fixed inset-0 top-14 bg-nitebite-dark/95 backdrop-blur-lg z-40 animate-fade-in">
           <div className="flex flex-col items-center justify-center h-full space-y-8 p-4">
             <Link 
               to="/" 
-              className="text-nitebite-text hover:text-nitebite-highlight text-2xl animate-fade-in-up" 
+              className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
               style={{ animationDelay: '100ms' }}
               onClick={() => setIsMenuOpen(false)}
             >
               Home
             </Link>
             <button 
-              className="text-nitebite-text hover:text-nitebite-highlight text-2xl animate-fade-in-up" 
+              className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
               style={{ animationDelay: '200ms' }}
-              onClick={() => scrollToSection('featured-items')}
+              onClick={() => scrollToSection('category-section')}
             >
               Menu
             </button>
             <Link 
               to="/about" 
-              className="text-nitebite-text hover:text-nitebite-highlight text-2xl animate-fade-in-up" 
+              className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
               style={{ animationDelay: '300ms' }}
               onClick={() => setIsMenuOpen(false)}
             >
               About
             </Link>
             <button 
-              className="text-nitebite-text hover:text-nitebite-highlight text-2xl animate-fade-in-up" 
+              className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
               style={{ animationDelay: '400ms' }}
               onClick={() => scrollToSection('footer')}
             >
               Contact
             </button>
-            <Link 
-              to="/checkout" 
-              className="glassmorphic-button text-white text-xl py-6 px-10 rounded-full animate-fade-in-up"
+            <button
+              className="glassmorphic-button text-white text-lg py-4 px-8 rounded-full animate-fade-in-up"
               style={{ animationDelay: '500ms' }}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                scrollToSection('category-section');
+                setIsMenuOpen(false);
+              }}
             >
-              Your Box
-            </Link>
+              Order Now
+            </button>
           </div>
         </div>
       )}

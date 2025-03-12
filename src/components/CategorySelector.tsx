@@ -21,16 +21,16 @@ const CategorySelector: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('chips');
 
   return (
-    <div className="py-16 bg-nitebite-dark-accent">
+    <div className="py-10 md:py-16 bg-nitebite-dark-accent">
       <div className="page-container">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4 animate-fade-in">Categories</h2>
-          <p className="text-nitebite-text-muted max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '100ms' }}>
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 animate-fade-in">Categories</h2>
+          <p className="text-nitebite-text-muted max-w-2xl mx-auto text-sm md:text-base animate-fade-in" style={{ animationDelay: '100ms' }}>
             Browse our selection of midnight munchies and quick bites.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 md:gap-4">
           {categories.map((category, index) => (
             <CategoryCard
               key={category.id}
@@ -61,16 +61,16 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, isSelected, onCli
       transition={{ delay: delay / 1000, duration: 0.5 }}
       onClick={onClick}
       className={cn(
-        "relative p-6 rounded-2xl cursor-pointer transition-all duration-300 overflow-hidden",
+        "relative p-4 md:p-6 rounded-xl md:rounded-2xl cursor-pointer transition-all duration-300 overflow-hidden touch-manipulation",
         isSelected
           ? "glass-card border-nitebite-accent shadow-lg"
-          : "bg-nitebite-dark/50 border border-white/5 hover:border-white/10"
+          : "bg-nitebite-dark/50 border border-white/5 hover:border-white/10 active:scale-95"
       )}
     >
       <div className="text-center">
-        <span className="text-4xl mb-3 block">{category.icon}</span>
+        <span className="text-3xl md:text-4xl mb-2 md:mb-3 block">{category.icon}</span>
         <h3 className={cn(
-          "font-medium transition-colors duration-300",
+          "text-sm md:text-base font-medium transition-colors duration-300",
           isSelected ? "text-nitebite-highlight" : "text-nitebite-text"
         )}>
           {category.name}

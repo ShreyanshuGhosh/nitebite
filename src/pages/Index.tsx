@@ -6,7 +6,6 @@ import CategorySelector from '@/components/CategorySelector';
 import FeaturedProducts from '@/components/FeaturedProducts';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
-import FloatingBox from '@/components/FloatingBox';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Index = () => {
@@ -26,10 +25,11 @@ const Index = () => {
         <Navbar transparent={true} />
         <main>
           <Hero />
-          <CategorySelector />
+          <div id="category-section">
+            <CategorySelector />
+          </div>
           <FeaturedProducts />
         </main>
-        <FloatingBox />
         <BackToTop />
         <Footer />
       </motion.div>
