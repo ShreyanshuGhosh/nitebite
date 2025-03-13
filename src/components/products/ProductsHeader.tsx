@@ -1,13 +1,35 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ShoppingBag, Search } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, Search, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { useCartStore } from '@/store/cartStore';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const ProductsHeader: React.FC = () => {
+interface ProductsHeaderProps {
+  onSearch: (query: string) => void;
+}
+
+const ProductsHeader: React.FC<ProductsHeaderProps> = ({ onSearch }) => {
   const navigate = useNavigate();
   const itemCount = useCartStore(state => state.getItemCount());
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    onSearch(query);
+  };
+
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+    if (isSearchOpen) {
+      setSearchQuery('');
+      onSearch('');
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 glassmorphic-panel px-4 py-3">
@@ -22,22 +44,46 @@ const ProductsHeader: React.FC = () => {
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
-          <div className="flex flex-col">
-            <h1 className="text-lg font-bold">Delivery in 11 minutes</h1>
-            <p className="text-xs text-nitebite-text-muted flex items-center">
-              Your location <span className="ml-1">▼</span>
-            </p>
-          </div>
+          
+          {!isSearchOpen && (
+            <div className="flex flex-col">
+              <h1 className="text-lg font-bold">Delivery in 11 minutes</h1>
+              <p className="text-xs text-nitebite-text-muted flex items-center">
+                Your location <span className="ml-1">▼</span>
+              </p>
+            </div>
+          )}
         </div>
         
-        <div className="flex items-center gap-3">
+        <AnimatePresence>
+          {isSearchOpen && (
+            <motion.div 
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: "100%" }}
+              exit={{ opacity: 0, width: 0 }}
+              className="absolute left-0 right-0 px-4 flex items-center"
+            >
+              <Input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="flex-1 bg-white/10 border-white/20 text-white placeholder-white/50"
+                autoFocus
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        
+        <div className="flex items-center gap-3 z-10">
           <Button 
             variant="ghost" 
             size="icon" 
             className="glassmorphic-ghost-button rounded-full"
-            aria-label="Search"
+            onClick={toggleSearch}
+            aria-label={isSearchOpen ? "Close search" : "Search"}
           >
-            <Search className="h-5 w-5" />
+            {isSearchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
           </Button>
           
           <Button 

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -22,6 +22,7 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>(
     categoryFromUrl || 'chips'
   );
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const navigate = useNavigate();
   const itemCount = useCartStore(state => state.getItemCount());
@@ -35,17 +36,35 @@ const Products = () => {
     icon: getCategoryIcon(category)
   }));
 
-  // Filter products based on selected category
+  // Filter products based on selected category and search query
   useEffect(() => {
-    const filtered = products.filter(
-      (product) => product.category === selectedCategory
-    );
+    let filtered = products;
+    
+    // Filter by category if not searching
+    if (selectedCategory && !searchQuery) {
+      filtered = filtered.filter(
+        (product) => product.category === selectedCategory
+      );
+    }
+    
+    // Filter by search query
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = products.filter((product) => 
+        product.name.toLowerCase().includes(query) || 
+        product.category.toLowerCase().includes(query) ||
+        (product.description && product.description.toLowerCase().includes(query))
+      );
+    }
+    
     setFilteredProducts(filtered);
     
-    // Update URL without reloading the page
-    const newUrl = `/products?category=${selectedCategory}`;
-    window.history.pushState({ path: newUrl }, '', newUrl);
-  }, [selectedCategory]);
+    // Update URL only when category changes and not during search
+    if (!searchQuery) {
+      const newUrl = `/products?category=${selectedCategory}`;
+      window.history.pushState({ path: newUrl }, '', newUrl);
+    }
+  }, [selectedCategory, searchQuery]);
 
   // Update category when URL changes
   useEffect(() => {
@@ -56,11 +75,27 @@ const Products = () => {
 
   const handleCategorySelect = (categoryId: string) => {
     setSelectedCategory(categoryId);
+    setSearchQuery(''); // Clear search when changing category
   };
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
+
+  // Get the title for the product list
+  const listTitle = useMemo(() => {
+    if (searchQuery) {
+      return `Search results for "${searchQuery}"`;
+    }
+    if (filteredProducts.length > 0) {
+      return filteredProducts[0].category.charAt(0).toUpperCase() + filteredProducts[0].category.slice(1);
+    }
+    return 'Products';
+  }, [searchQuery, filteredProducts]);
 
   return (
     <div className="flex flex-col min-h-screen bg-nitebite-dark">
-      <ProductsHeader />
+      <ProductsHeader onSearch={handleSearch} />
 
       <div className="flex-1 flex overflow-hidden">
         <CategoriesSidebar 
@@ -69,7 +104,11 @@ const Products = () => {
           onCategorySelect={handleCategorySelect}
         />
 
-        <ProductsList products={filteredProducts} />
+        <ProductsList 
+          products={filteredProducts} 
+          title={listTitle}
+          isSearching={!!searchQuery}
+        />
       </div>
       
       {/* Sticky "Add to Box" button for mobile */}

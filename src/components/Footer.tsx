@@ -11,14 +11,16 @@ const Footer: React.FC = () => {
           
           <div className="flex items-center justify-center gap-4 mb-6">
             <a 
-              href="mailto:contact@nitebite.com" 
+              href="mailto:nitebite4u@gmail.com" 
               className="p-3 rounded-full glassmorphic-ghost-button text-nitebite-text hover:text-nitebite-accent transition-all duration-300 hover:scale-110"
               aria-label="Email"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Mail className="w-5 h-5" />
             </a>
             <a 
-              href="https://instagram.com/nitebite" 
+              href="https://www.instagram.com/nitebit.e/?hl=en" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="p-3 rounded-full glassmorphic-ghost-button text-nitebite-text hover:text-nitebite-accent transition-all duration-300 hover:scale-110"
@@ -37,9 +39,14 @@ const Footer: React.FC = () => {
             </a>
           </div>
           
-          <p className="text-nitebite-text-muted text-sm">
-            contact@nitebite.com
-          </p>
+          <a 
+            href="mailto:nitebite4u@gmail.com"
+            className="text-nitebite-text hover:text-nitebite-accent text-sm transition-colors duration-300"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            nitebite4u@gmail.com
+          </a>
           
           <p className="text-nitebite-text-muted text-xs mt-6">
             © {new Date().getFullYear()} nitebite. All rights reserved.

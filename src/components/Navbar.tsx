@@ -5,6 +5,7 @@ import { Menu, X, ShoppingBag, User } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
 import { useCartStore } from '@/store/cartStore';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavbarProps {
   transparent?: boolean;
@@ -134,44 +135,57 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
       </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-14 bg-nitebite-dark/95 backdrop-blur-lg z-40 animate-fade-in">
-          <div className="flex flex-col items-center justify-center h-full space-y-8 p-4">
-            <Link 
-              to="/" 
-              className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
-              style={{ animationDelay: '100ms' }}
-              onClick={() => setIsMenuOpen(false)}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            className="md:hidden fixed inset-0 top-14 bg-nitebite-dark/95 backdrop-blur-lg z-40"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div 
+              className="flex flex-col items-center justify-center h-full space-y-8 p-4 glassmorphic-card mx-4 my-4 rounded-xl"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.3 }}
             >
-              Home
-            </Link>
-            <button 
-              className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
-              style={{ animationDelay: '200ms' }}
-              onClick={() => scrollToSection('category-section')}
-            >
-              Menu
-            </button>
-            <button 
-              className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
-              style={{ animationDelay: '300ms' }}
-              onClick={() => scrollToSection('footer')}
-            >
-              Contact
-            </button>
-            <button
-              className="glassmorphic-button text-white text-lg py-4 px-8 rounded-full animate-fade-in-up"
-              style={{ animationDelay: '400ms' }}
-              onClick={() => {
-                scrollToSection('category-section');
-                setIsMenuOpen(false);
-              }}
-            >
-              Order Now
-            </button>
-          </div>
-        </div>
-      )}
+              <Link 
+                to="/" 
+                className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
+                style={{ animationDelay: '100ms' }}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <button 
+                className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
+                style={{ animationDelay: '200ms' }}
+                onClick={() => scrollToSection('category-section')}
+              >
+                Menu
+              </button>
+              <button 
+                className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
+                style={{ animationDelay: '300ms' }}
+                onClick={() => scrollToSection('footer')}
+              >
+                Contact
+              </button>
+              <button
+                className="glassmorphic-button text-white text-lg py-4 px-8 rounded-full animate-fade-in-up"
+                style={{ animationDelay: '400ms' }}
+                onClick={() => {
+                  scrollToSection('category-section');
+                  setIsMenuOpen(false);
+                }}
+              >
+                Order Now
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
