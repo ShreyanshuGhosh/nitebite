@@ -14,7 +14,9 @@ const CheckoutItems = () => {
         <p className="text-nitebite-text-muted mb-6">Add some items to get started!</p>
         <Button 
           className="glassmorphic-button text-white"
-          onClick={() => window.location.href = '/'}
+          onClick={() => {
+            window.location.href = '/#category-section';
+          }}
         >
           Browse Menu
         </Button>

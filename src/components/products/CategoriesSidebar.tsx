@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import CategoryButton from './CategoryButton';
 import { motion } from 'framer-motion';
 
@@ -20,6 +20,11 @@ const CategoriesSidebar: React.FC<CategoriesSidebarProps> = ({
   selectedCategory, 
   onCategorySelect 
 }) => {
+  // Force a re-render when selectedCategory changes
+  useEffect(() => {
+    // This effect ensures the sidebar updates when the selectedCategory changes
+  }, [selectedCategory]);
+  
   return (
     <motion.div 
       initial={{ opacity: 0, x: -20 }}

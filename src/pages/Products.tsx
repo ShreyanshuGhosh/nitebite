@@ -36,6 +36,13 @@ const Products = () => {
     icon: getCategoryIcon(category)
   }));
 
+  // Watch for URL changes to update selected category
+  useEffect(() => {
+    if (categoryFromUrl && categories.some(cat => cat.id === categoryFromUrl)) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [categoryFromUrl, location.search, categories]);
+
   // Filter products based on selected category and search query
   useEffect(() => {
     let filtered = products;
@@ -58,24 +65,15 @@ const Products = () => {
     }
     
     setFilteredProducts(filtered);
-    
-    // Update URL only when category changes and not during search
-    if (!searchQuery) {
-      const newUrl = `/products?category=${selectedCategory}`;
-      window.history.pushState({ path: newUrl }, '', newUrl);
-    }
   }, [selectedCategory, searchQuery]);
-
-  // Update category when URL changes
-  useEffect(() => {
-    if (categoryFromUrl && categories.some(cat => cat.id === categoryFromUrl)) {
-      setSelectedCategory(categoryFromUrl);
-    }
-  }, [categoryFromUrl, categories]);
 
   const handleCategorySelect = (categoryId: string) => {
     setSelectedCategory(categoryId);
     setSearchQuery(''); // Clear search when changing category
+    
+    // Update URL to reflect category change
+    const newUrl = `/products?category=${categoryId}`;
+    navigate(newUrl, { replace: true });
   };
 
   const handleSearch = (query: string) => {
