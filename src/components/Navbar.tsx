@@ -69,9 +69,6 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
           >
             Menu
           </button>
-          <Link to="/about" className="text-nitebite-text hover:text-nitebite-highlight transition duration-200 animated-border">
-            About
-          </Link>
           <button 
             onClick={() => scrollToSection('footer')} 
             className="text-nitebite-text hover:text-nitebite-highlight transition duration-200 animated-border"
@@ -155,24 +152,16 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
             >
               Menu
             </button>
-            <Link 
-              to="/about" 
-              className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
-              style={{ animationDelay: '300ms' }}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              About
-            </Link>
             <button 
               className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
-              style={{ animationDelay: '400ms' }}
+              style={{ animationDelay: '300ms' }}
               onClick={() => scrollToSection('footer')}
             >
               Contact
             </button>
             <button
               className="glassmorphic-button text-white text-lg py-4 px-8 rounded-full animate-fade-in-up"
-              style={{ animationDelay: '500ms' }}
+              style={{ animationDelay: '400ms' }}
               onClick={() => {
                 scrollToSection('category-section');
                 setIsMenuOpen(false);

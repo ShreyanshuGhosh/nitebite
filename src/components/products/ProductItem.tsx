@@ -25,7 +25,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product, index }) => {
       transition={{ duration: 0.2, delay: index * 0.05 }}
     >
       <div className="bg-nitebite-dark-accent/30 rounded-lg overflow-hidden border border-white/5 h-full flex flex-col">
-        <div className="relative pt-[100%]">
+        <div className="relative pt-[90%] md:pt-[80%]"> {/* Reduced image height */}
           <img 
             src={product.image} 
             alt={product.name}

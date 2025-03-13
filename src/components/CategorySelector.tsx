@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useNavigate } from 'react-router-dom';
+import { getCategoryIcon } from './products/utils';
 
 interface Category {
   id: string;
@@ -29,16 +30,19 @@ const CategorySelector: React.FC = () => {
   };
 
   return (
-    <div className="py-10 md:py-16 bg-nitebite-dark-accent">
+    <div className="py-12 md:py-20 bg-gradient-to-b from-nitebite-dark to-nitebite-dark-accent">
       <div className="page-container">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 animate-fade-in">Categories</h2>
-          <p className="text-nitebite-text-muted max-w-2xl mx-auto text-sm md:text-base animate-fade-in" style={{ animationDelay: '100ms' }}>
-            Browse our selection of midnight munchies and quick bites.
+        <div className="text-center mb-10 md:mb-14">
+          <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4 animate-fade-in text-gradient-accent">
+            Browse Categories
+          </h2>
+          <p className="text-nitebite-text-muted max-w-2xl mx-auto text-sm md:text-base animate-fade-in" 
+             style={{ animationDelay: '100ms' }}>
+            Find your midnight cravings from our curated collection
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6">
           {categories.map((category, index) => (
             <CategoryCard
               key={category.id}
@@ -69,17 +73,19 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, isSelected, onCli
       transition={{ delay: delay / 1000, duration: 0.5 }}
       onClick={onClick}
       className={cn(
-        "relative p-4 md:p-6 rounded-xl md:rounded-2xl cursor-pointer transition-all duration-300 overflow-hidden touch-manipulation",
+        "relative p-5 md:p-7 rounded-xl md:rounded-2xl cursor-pointer transition-all duration-300 overflow-hidden touch-manipulation group",
         isSelected
-          ? "glass-card border-nitebite-accent shadow-lg"
-          : "bg-nitebite-dark/50 border border-white/5 hover:border-white/10 active:scale-95"
+          ? "glassmorphic-card shadow-glow border-nitebite-accent border-2"
+          : "bg-nitebite-dark/70 backdrop-blur-sm border border-white/10 hover:border-white/20 hover:translate-y-[-5px]"
       )}
     >
       <div className="text-center">
-        <span className="text-3xl md:text-4xl mb-2 md:mb-3 block">{category.icon}</span>
+        <span className="text-4xl md:text-5xl mb-3 md:mb-4 block transition-transform duration-300 group-hover:scale-110">
+          {category.icon}
+        </span>
         <h3 className={cn(
           "text-sm md:text-base font-medium transition-colors duration-300",
-          isSelected ? "text-nitebite-highlight" : "text-nitebite-text"
+          isSelected ? "text-nitebite-highlight" : "text-nitebite-text group-hover:text-nitebite-highlight"
         )}>
           {category.name}
         </h3>

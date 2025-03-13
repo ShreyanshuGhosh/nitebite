@@ -1,6 +1,7 @@
 
 import React from 'react';
 import CategoryButton from './CategoryButton';
+import { motion } from 'framer-motion';
 
 interface Category {
   id: string;
@@ -20,16 +21,29 @@ const CategoriesSidebar: React.FC<CategoriesSidebarProps> = ({
   onCategorySelect 
 }) => {
   return (
-    <div className="w-20 flex-shrink-0 overflow-y-auto bg-nitebite-dark-accent border-r border-white/5">
-      {categories.map((category) => (
-        <CategoryButton
-          key={category.id}
-          category={category}
-          isSelected={selectedCategory === category.id}
-          onClick={() => onCategorySelect(category.id)}
-        />
-      ))}
-    </div>
+    <motion.div 
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.3 }}
+      className="w-20 md:w-24 flex-shrink-0 overflow-y-auto bg-gradient-to-b from-nitebite-dark to-nitebite-dark-accent border-r border-white/5"
+    >
+      <div className="py-4 flex flex-col items-center gap-4">
+        {categories.map((category, index) => (
+          <motion.div
+            key={category.id}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.05, duration: 0.3 }}
+          >
+            <CategoryButton
+              category={category}
+              isSelected={selectedCategory === category.id}
+              onClick={() => onCategorySelect(category.id)}
+            />
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
   );
 };
 

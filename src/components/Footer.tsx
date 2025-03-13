@@ -1,119 +1,47 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Clock, MapPin, Phone, Mail, Instagram, Linkedin, Facebook } from 'lucide-react';
+import { Mail, Instagram, Linkedin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer id="footer" className="bg-nitebite-dark-accent/80 backdrop-blur-lg pt-16 pb-8">
+    <footer id="footer" className="bg-nitebite-dark-accent/80 backdrop-blur-lg py-12">
       <div className="page-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* About Section */}
-          <div>
-            <h3 className="font-bold text-2xl text-gradient-accent mb-4">nitebite</h3>
-            <p className="text-nitebite-text-muted mb-6">
-              Your 10-minute delivery service for late-night cravings. We bring snacks, drinks, and more right to your door.
-            </p>
-            <div className="flex space-x-4">
-              <a href="https://instagram.com/nitebite" target="_blank" rel="noopener noreferrer" className="text-nitebite-text-muted hover:text-nitebite-accent transition duration-300">
-                <Instagram size={20} />
-              </a>
-              <a href="https://linkedin.com/company/nitebite" target="_blank" rel="noopener noreferrer" className="text-nitebite-text-muted hover:text-nitebite-accent transition duration-300">
-                <Linkedin size={20} />
-              </a>
-              <a href="https://facebook.com/nitebite" target="_blank" rel="noopener noreferrer" className="text-nitebite-text-muted hover:text-nitebite-accent transition duration-300">
-                <Facebook size={20} />
-              </a>
-            </div>
+        <div className="flex flex-col items-center justify-center text-center">
+          <h3 className="font-bold text-2xl text-gradient-accent mb-6">nitebite</h3>
+          
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <a 
+              href="mailto:contact@nitebite.com" 
+              className="p-3 rounded-full glassmorphic-ghost-button text-nitebite-text hover:text-nitebite-accent transition-all duration-300 hover:scale-110"
+              aria-label="Email"
+            >
+              <Mail className="w-5 h-5" />
+            </a>
+            <a 
+              href="https://instagram.com/nitebite" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="p-3 rounded-full glassmorphic-ghost-button text-nitebite-text hover:text-nitebite-accent transition-all duration-300 hover:scale-110"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-5 h-5" />
+            </a>
+            <a 
+              href="https://linkedin.com/company/nitebite" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="p-3 rounded-full glassmorphic-ghost-button text-nitebite-text hover:text-nitebite-accent transition-all duration-300 hover:scale-110"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5" />
+            </a>
           </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold text-nitebite-highlight mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/" className="text-nitebite-text-muted hover:text-nitebite-accent transition duration-300">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/menu" className="text-nitebite-text-muted hover:text-nitebite-accent transition duration-300">
-                  Menu
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-nitebite-text-muted hover:text-nitebite-accent transition duration-300">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-nitebite-text-muted hover:text-nitebite-accent transition duration-300">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq" className="text-nitebite-text-muted hover:text-nitebite-accent transition duration-300">
-                  FAQ
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="font-semibold text-nitebite-highlight mb-4">Contact Us</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <MapPin className="text-nitebite-accent w-5 h-5 mr-3 mt-1 flex-shrink-0" />
-                <span className="text-nitebite-text-muted">
-                  123 Midnight Avenue, Snackville, NY 10001
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Phone className="text-nitebite-accent w-5 h-5 mr-3 mt-1 flex-shrink-0" />
-                <span className="text-nitebite-text-muted">
-                  (555) 123-4567
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Mail className="text-nitebite-accent w-5 h-5 mr-3 mt-1 flex-shrink-0" />
-                <span className="text-nitebite-text-muted">
-                  contact@nitebite.com
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Clock className="text-nitebite-accent w-5 h-5 mr-3 mt-1 flex-shrink-0" />
-                <span className="text-nitebite-text-muted">
-                  Open: 8 PM - 4 AM Daily
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h3 className="font-semibold text-nitebite-highlight mb-4">Subscribe</h3>
-            <p className="text-nitebite-text-muted mb-4">
-              Get updates on new items and exclusive offers.
-            </p>
-            <form className="flex flex-col space-y-3">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="bg-nitebite-dark border border-nitebite-accent/30 text-nitebite-text rounded-lg px-4 py-2 focus:outline-none focus:border-nitebite-accent"
-              />
-              <button 
-                type="submit"
-                className="bg-nitebite-accent hover:bg-nitebite-accent-light text-white rounded-lg px-4 py-2 transition duration-300"
-              >
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <div className="border-t border-white/10 pt-8 mt-8 text-center">
+          
           <p className="text-nitebite-text-muted text-sm">
+            contact@nitebite.com
+          </p>
+          
+          <p className="text-nitebite-text-muted text-xs mt-6">
             © {new Date().getFullYear()} nitebite. All rights reserved.
           </p>
         </div>

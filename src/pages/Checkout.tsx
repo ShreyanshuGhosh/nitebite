@@ -9,14 +9,25 @@ import OrderSummary from '@/components/OrderSummary';
 import BackToTop from '@/components/BackToTop';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
+import { useCartStore } from '@/store/cartStore';
 
 const Checkout = () => {
   const navigate = useNavigate();
+  const itemCount = useCartStore(state => state.getItemCount());
   
   // Scroll to top on page load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleBackClick = () => {
+    // If cart is empty, go to home page, otherwise go to products
+    if (itemCount === 0) {
+      navigate('/#featured-items');
+    } else {
+      navigate('/products');
+    }
+  };
 
   return (
     <motion.div
@@ -34,7 +45,7 @@ const Checkout = () => {
               variant="ghost" 
               size="icon" 
               className="glassmorphic-ghost-button rounded-full mr-4"
-              onClick={() => navigate(-1)}
+              onClick={handleBackClick}
               aria-label="Go back"
             >
               <ArrowLeft className="h-5 w-5" />
