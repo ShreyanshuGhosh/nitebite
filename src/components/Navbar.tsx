@@ -1,11 +1,12 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ShoppingBag, User } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
 import { useCartStore } from '@/store/cartStore';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useOnClickOutside } from '@/hooks/use-click-outside';
 
 interface NavbarProps {
   transparent?: boolean;
@@ -15,6 +16,10 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const itemCount = useCartStore(state => state.getItemCount());
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Close menu when clicking outside
+  useOnClickOutside(menuRef, () => setIsMenuOpen(false));
 
   // Handle scroll effect for transparent navbar
   useEffect(() => {
@@ -134,59 +139,96 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Floating Box Style */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div 
-            className="md:hidden fixed inset-0 top-14 bg-nitebite-dark/95 backdrop-blur-lg z-40"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
+          <div className="fixed inset-0 z-40 pointer-events-none">
             <motion.div 
-              className="flex flex-col items-center justify-center h-full space-y-8 p-4 glassmorphic-card mx-4 my-4 rounded-xl"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.3 }}
+              className="w-full h-full flex justify-end items-start pt-16 px-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
             >
-              <Link 
-                to="/" 
-                className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
-                style={{ animationDelay: '100ms' }}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Home
-              </Link>
-              <button 
-                className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
-                style={{ animationDelay: '200ms' }}
-                onClick={() => scrollToSection('category-section')}
-              >
-                Menu
-              </button>
-              <button 
-                className="text-nitebite-text hover:text-nitebite-highlight text-xl animate-fade-in-up" 
-                style={{ animationDelay: '300ms' }}
-                onClick={() => scrollToSection('footer')}
-              >
-                Contact
-              </button>
-              <button
-                className="glassmorphic-button text-white text-lg py-4 px-8 rounded-full animate-fade-in-up"
-                style={{ animationDelay: '400ms' }}
-                onClick={() => {
-                  scrollToSection('category-section');
-                  setIsMenuOpen(false);
+              <motion.div 
+                ref={menuRef}
+                className="w-[80%] max-w-xs bg-nitebite-dark-accent/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl overflow-hidden pointer-events-auto"
+                initial={{ opacity: 0, x: 20, scale: 0.95 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: 20, scale: 0.95 }}
+                transition={{ 
+                  duration: 0.3, 
+                  ease: [0.32, 0.72, 0, 1],
+                  staggerChildren: 0.05,
+                  delayChildren: 0.1
                 }}
               >
-                Order Now
-              </button>
+                <div className="py-4 px-2">
+                  {/* Menu Items */}
+                  <div className="flex flex-col space-y-2">
+                    <MenuItemAnimation>
+                      <Link 
+                        to="/" 
+                        className="flex items-center px-4 py-3 rounded-md text-nitebite-text hover:bg-white/5 transition-all duration-200"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <span className="text-lg font-medium">Home</span>
+                      </Link>
+                    </MenuItemAnimation>
+                    
+                    <MenuItemAnimation>
+                      <button 
+                        className="flex items-center px-4 py-3 rounded-md text-nitebite-text hover:bg-white/5 text-left transition-all duration-200"
+                        onClick={() => scrollToSection('category-section')}
+                      >
+                        <span className="text-lg font-medium">Menu</span>
+                      </button>
+                    </MenuItemAnimation>
+                    
+                    <MenuItemAnimation>
+                      <button 
+                        className="flex items-center px-4 py-3 rounded-md text-nitebite-text hover:bg-white/5 text-left transition-all duration-200"
+                        onClick={() => scrollToSection('footer')}
+                      >
+                        <span className="text-lg font-medium">Contact</span>
+                      </button>
+                    </MenuItemAnimation>
+                    
+                    <MenuItemAnimation>
+                      <div className="mt-4 px-4">
+                        <Button 
+                          className="w-full glassmorphic-button py-5 rounded-md text-white font-medium"
+                          onClick={() => {
+                            scrollToSection('category-section');
+                            setIsMenuOpen(false);
+                          }}
+                        >
+                          Order Now
+                        </Button>
+                      </div>
+                    </MenuItemAnimation>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </nav>
+  );
+};
+
+// Animation wrapper for menu items
+const MenuItemAnimation = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 10 }}
+      transition={{ duration: 0.2 }}
+    >
+      {children}
+    </motion.div>
   );
 };
 
