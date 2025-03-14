@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import CategorySelector from '@/components/CategorySelector';
 import FeaturedProducts from '@/components/FeaturedProducts';
+import HowItWorks from '@/components/HowItWorks';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -28,6 +29,7 @@ const Index = () => {
           <div id="category-section">
             <CategorySelector />
           </div>
+          <HowItWorks />
           <FeaturedProducts />
         </main>
         <BackToTop />
