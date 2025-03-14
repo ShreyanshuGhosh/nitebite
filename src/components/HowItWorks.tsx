@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Package, Clock, Truck, Utensils } from 'lucide-react';
+import { Package, CheckCircle, Truck, Utensils } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const HowItWorks: React.FC = () => {
@@ -12,9 +12,9 @@ const HowItWorks: React.FC = () => {
       delay: 0.1
     },
     {
-      icon: <Clock className="w-12 h-12 md:w-16 md:h-16 text-nitebite-accent" />,
-      title: "Quick Preparation",
-      description: "We prepare your order in just minutes",
+      icon: <CheckCircle className="w-12 h-12 md:w-16 md:h-16 text-nitebite-accent" />,
+      title: "Confirm Your Order",
+      description: "Review your order and proceed to checkout",
       delay: 0.3
     },
     {

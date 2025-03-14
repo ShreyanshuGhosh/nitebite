@@ -29,8 +29,8 @@ const Index = () => {
           <div id="category-section">
             <CategorySelector />
           </div>
-          <HowItWorks />
           <FeaturedProducts />
+          <HowItWorks />
         </main>
         <BackToTop />
         <Footer />

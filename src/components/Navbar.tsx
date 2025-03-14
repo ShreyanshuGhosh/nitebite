@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ShoppingBag, User } from 'lucide-react';
+import { Menu, X, ShoppingBag, User, HelpCircle } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
 import { useCartStore } from '@/store/cartStore';
@@ -74,6 +74,12 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
             className="text-nitebite-text hover:text-nitebite-highlight transition duration-200 animated-border"
           >
             Menu
+          </button>
+          <button 
+            onClick={() => scrollToSection('how-it-works')} 
+            className="text-nitebite-text hover:text-nitebite-highlight transition duration-200 animated-border"
+          >
+            How to Order
           </button>
           <button 
             onClick={() => scrollToSection('footer')} 
@@ -182,6 +188,15 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
                         onClick={() => scrollToSection('category-section')}
                       >
                         <span className="text-lg font-medium">Menu</span>
+                      </button>
+                    </MenuItemAnimation>
+                    
+                    <MenuItemAnimation>
+                      <button 
+                        className="flex items-center px-4 py-3 rounded-md text-nitebite-text hover:bg-white/5 text-left transition-all duration-200"
+                        onClick={() => scrollToSection('how-it-works')}
+                      >
+                        <span className="text-lg font-medium">How to Order</span>
                       </button>
                     </MenuItemAnimation>
                     
