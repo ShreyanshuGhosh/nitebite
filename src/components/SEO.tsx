@@ -41,16 +41,13 @@ const SEO: React.FC<SEOProps> = ({
       target: {
         '@type': 'EntryPoint',
         urlTemplate: 'https://nitebite.com/products',
-        inLanguage: 'en-US',
         actionPlatform: [
           'http://schema.org/DesktopWebPlatform',
           'http://schema.org/IOSPlatform',
           'http://schema.org/AndroidPlatform',
         ],
       },
-      deliveryMethod: [
-        'http://purl.org/goodrelations/v1#DeliveryModeOwnFleet',
-      ],
+      deliveryMethod: 'http://purl.org/goodrelations/v1#DeliveryModeOwnFleet',
     },
     areaServed: {
       '@type': 'Country',

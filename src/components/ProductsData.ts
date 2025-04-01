@@ -7,7 +7,8 @@ export const productData = [
     price: 110.00,
     image_url: ["https://example.com/monster-energy.jpg"],
     category: "beverages",
-    description: "Energy drink for late nights"
+    description: "Energy drink for late nights",
+    category_id: "bev-001"
   },
   {
     id: "2",
@@ -15,7 +16,8 @@ export const productData = [
     price: 19.00,
     image_url: ["https://example.com/coca-cola.jpg"],
     category: "beverages",
-    description: "Classic refreshing cola"
+    description: "Classic refreshing cola",
+    category_id: "bev-001"
   },
   {
     id: "3",
@@ -23,7 +25,8 @@ export const productData = [
     price: 19.00,
     image_url: ["https://example.com/sting.jpg"],
     category: "beverages", 
-    description: "Energy drink with fruity flavor"
+    description: "Energy drink with fruity flavor",
+    category_id: "bev-001"
   },
   {
     id: "4",
@@ -31,7 +34,8 @@ export const productData = [
     price: 19.00,
     image_url: ["https://example.com/sprite.jpg"],
     category: "beverages",
-    description: "Lemon-lime flavored soft drink"
+    description: "Lemon-lime flavored soft drink",
+    category_id: "bev-001"
   },
   {
     id: "5",
@@ -39,6 +43,7 @@ export const productData = [
     price: 20.00,
     image_url: ["https://example.com/kurkure.jpg"],
     category: "snacks",
-    description: "Crunchy corn puffs with green chutney flavor"
+    description: "Crunchy corn puffs with green chutney flavor",
+    category_id: "snk-001"
   }
 ];

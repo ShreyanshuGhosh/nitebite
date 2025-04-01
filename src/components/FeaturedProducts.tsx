@@ -13,7 +13,6 @@ const FeaturedProducts: React.FC = () => {
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
   const { data: products = [], isLoading } = useFeaturedProducts();
 
-  // Check scrollability on mount and window resize
   useEffect(() => {
     const checkScrollability = () => {
       if (scrollContainerRef.current) {
@@ -28,7 +27,6 @@ const FeaturedProducts: React.FC = () => {
     return () => window.removeEventListener('resize', checkScrollability);
   }, []);
 
-  // Attach scroll event listener to update scrollability state
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
     const handleScroll = () => {
@@ -45,7 +43,6 @@ const FeaturedProducts: React.FC = () => {
     }
   }, []);
 
-  // Auto-scroll behavior
   useEffect(() => {
     let autoScrollInterval: NodeJS.Timeout | null = null;
     
@@ -157,14 +154,12 @@ const FeaturedProducts: React.FC = () => {
             style={{ scrollSnapType: 'x mandatory' }}
           >
             {products.map((product, index) => {
-              // Convert string to array if needed
               const imageUrls = typeof product.image_url === 'string' 
                 ? [product.image_url]
                 : Array.isArray(product.image_url) 
                   ? product.image_url 
                   : ['/fallback-image.jpg'];
 
-              // Get the first image URL or fallback
               const imageUrl = imageUrls[0] || '/fallback-image.jpg';
 
               return (
@@ -176,7 +171,8 @@ const FeaturedProducts: React.FC = () => {
                   <ProductCard 
                     product={{ 
                       ...product, 
-                      image: imageUrl // Pass the first image URL to the ProductCard
+                      image: imageUrl,
+                      category: product.category || product.category_id || "unknown"
                     }} 
                     index={index} 
                   />
