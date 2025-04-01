@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -62,11 +63,11 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Late Night <span className="text-gradient-accent">Cravings?</span>
+          Late Night <span className="text-yellow-300">Cravings?</span>
         </motion.h1>
         
         <motion.h2
-          className="text-4xl md:text-5xl font-bold mb-6 text-nitebite-accent"
+          className="text-4xl md:text-5xl font-bold mb-6 text-yellow-300"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -83,17 +84,17 @@ const Hero = () => {
           <p className="text-xl mb-4 text-white">Launching In:</p>
           <div className="flex justify-center gap-4 md:gap-8 text-center">
             <div className="w-20">
-              <div className="text-5xl font-bold text-nitebite-accent">{String(timeLeft.hours).padStart(2, '0')}</div>
+              <div className="text-5xl font-bold text-yellow-300">{String(timeLeft.hours).padStart(2, '0')}</div>
               <div className="text-sm text-nitebite-text-muted">HOURS</div>
             </div>
-            <div className="text-2xl font-bold text-nitebite-accent self-center">:</div>
+            <div className="text-2xl font-bold text-yellow-300 self-center">:</div>
             <div className="w-20">
-              <div className="text-5xl font-bold text-nitebite-accent">{String(timeLeft.minutes).padStart(2, '0')}</div>
+              <div className="text-5xl font-bold text-yellow-300">{String(timeLeft.minutes).padStart(2, '0')}</div>
               <div className="text-sm text-nitebite-text-muted">MINUTES</div>
             </div>
-            <div className="text-2xl font-bold text-nitebite-accent self-center">:</div>
+            <div className="text-2xl font-bold text-yellow-300 self-center">:</div>
             <div className="w-20">
-              <div className="text-5xl font-bold text-nitebite-accent">{String(timeLeft.seconds).padStart(2, '0')}</div>
+              <div className="text-5xl font-bold text-yellow-300">{String(timeLeft.seconds).padStart(2, '0')}</div>
               <div className="text-sm text-nitebite-text-muted">SECONDS</div>
             </div>
           </div>
@@ -138,11 +139,11 @@ const Hero = () => {
           transition={{ duration: 1, delay: 1.2 }}
         >
           <div className="flex items-center gap-2 text-white">
-            <Clock className="h-5 w-5 text-nitebite-accent" />
+            <Clock className="h-5 w-5 text-yellow-300" />
             <span>Fast Delivery</span>
           </div>
           <div className="flex items-center gap-2 text-white">
-            <MoonStar className="h-5 w-5 text-nitebite-accent" />
+            <MoonStar className="h-5 w-5 text-yellow-300" />
             <span>Late Night</span>
           </div>
         </motion.div>
@@ -155,7 +156,7 @@ const Hero = () => {
         >
           <Button 
             onClick={() => navigate('/products')}
-            className="glassmorphic-button text-white py-6 px-8 rounded-full flex items-center gap-2 shadow-glow animate-pulse-glow"
+            className="bg-yellow-400 hover:bg-yellow-500 text-black py-6 px-8 rounded-full flex items-center gap-2 shadow-lg animate-pulse-glow"
           >
             <ShoppingBag className="h-5 w-5" />
             See Items

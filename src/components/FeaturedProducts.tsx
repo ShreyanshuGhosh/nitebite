@@ -1,3 +1,4 @@
+
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
@@ -172,7 +173,8 @@ const FeaturedProducts: React.FC = () => {
                     product={{ 
                       ...product, 
                       image: imageUrl,
-                      category: product.category || product.category_id || "unknown"
+                      // Make sure we have a category property to satisfy TypeScript
+                      category: product.category || (product as any).category_id || "unknown"
                     }} 
                     index={index} 
                   />

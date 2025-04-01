@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
@@ -47,7 +48,8 @@ const SEO: React.FC<SEOProps> = ({
           'http://schema.org/AndroidPlatform',
         ],
       },
-      deliveryMethod: 'http://purl.org/goodrelations/v1#DeliveryModeOwnFleet',
+      // Fix schema validation by using a proper DeliveryMethod value
+      deliveryMethod: ['http://purl.org/goodrelations/v1#DeliveryModeOwnFleet'],
     },
     areaServed: {
       '@type': 'Country',

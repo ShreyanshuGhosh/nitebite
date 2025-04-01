@@ -321,18 +321,18 @@ const Account = () => {
                 </p>
                 <div className="space-y-3">
                   <a
-                    href="mailto:nitebite4u@gmail.com"
+                    href="mailto:support@nitebite.com"
                     className="flex items-center text-nitebite-text hover:text-nitebite-highlight transition-colors"
                   >
                     <Mail className="w-5 h-5 mr-3 text-nitebite-accent" />
-                    nitebite4u@gmail.com
+                    support@nitebite.com
                   </a>
                   <a
-                    href="tel:+919123252856"
+                    href="tel:+1234567890"
                     className="flex items-center text-nitebite-text hover:text-nitebite-highlight transition-colors"
                   >
                     <Phone className="w-5 h-5 mr-3 text-nitebite-accent" />
-                    +919123252856
+                    +1 (234) 567-890
                   </a>
                 </div>
               </div>

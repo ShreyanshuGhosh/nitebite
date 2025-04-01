@@ -74,7 +74,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product, index }) => {
             <Button
               variant="outline"
               size="sm"
-              className="h-8 border-green-500 text-green-500 hover:bg-green-500/10 min-w-[60px]"
+              className="h-8 border-green-500 text-green-500 hover:bg-green-500/10 min-w-[60px] px-2 truncate"
               onClick={handleAddToCart}
             >
               ADD

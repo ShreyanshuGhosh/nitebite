@@ -12,7 +12,8 @@ export interface Product {
   price: number;
   image_url: string | string[];
   image?: string;
-  category: string;
+  category?: string;
+  category_id?: string;
   description?: string;
 }
 
@@ -30,7 +31,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
       id: product.id,
       name: product.name,
       price: product.price,
-      category: product.category,
+      category: product.category || '',
       description: product.description,
       image_url: product.image_url,
     };
