@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
 import HowItWorks from '@/components/HowItWorks';
 import SEO from '@/components/SEO';
+import PromoBanner from '@/components/PromoBanner';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Index = () => {
@@ -43,8 +44,8 @@ const Index = () => {
           'http://schema.org/AndroidPlatform',
         ],
       },
-      // Fix schema validation by using an array
-      deliveryMethod: ['http://purl.org/goodrelations/v1#DeliveryModeOwnFleet'],
+      // Fix schema validation by using an array of strings
+      deliveryMethod: ['DeliveryModeOwnFleet'],
     },
     areaServed: {
       '@type': 'Country',
@@ -87,6 +88,7 @@ const Index = () => {
         transition={{ duration: 0.5 }}
       >
         <SEO schema={schema} />
+        <PromoBanner />
         <Navbar transparent={true} />
         <main>
           <Hero />

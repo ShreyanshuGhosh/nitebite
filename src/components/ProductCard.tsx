@@ -31,7 +31,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
       id: product.id,
       name: product.name,
       price: product.price,
-      category: product.category || '',
+      category: product.category || product.category_id || '',
       description: product.description,
       image_url: product.image_url,
     };

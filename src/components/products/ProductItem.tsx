@@ -44,11 +44,6 @@ const ProductItem: React.FC<ProductItemProps> = ({ product, index }) => {
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
           />
-          {/* Delivery time indicator */}
-          <div className="absolute bottom-2 left-2 bg-nitebite-dark/70 backdrop-blur-sm px-2 py-1 rounded-full flex items-center gap-1">
-            <span className="text-amber-500 text-xs">🕒</span>
-            <span className="text-xs text-white">30 MINS</span>
-          </div>
           
           {/* Discount badge, shown conditionally */}
           {Math.random() > 0.6 && (
@@ -59,7 +54,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product, index }) => {
         </div>
         
         <div className="p-2 flex-1 flex flex-col">
-          <h3 className="font-medium text-sm line-clamp-2">{product.name}</h3>
+          <h3 className="font-medium text-sm line-clamp-2 mb-2">{product.name}</h3>
           
           <div className="mt-auto flex items-center justify-between">
             <div className="flex items-center gap-1">

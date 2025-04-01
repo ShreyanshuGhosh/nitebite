@@ -1,6 +1,6 @@
 
 import React, { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -8,11 +8,17 @@ import { cn } from '@/lib/utils';
 import { useFeaturedProducts } from '@/hooks/use-products';
 
 const FeaturedProducts: React.FC = () => {
+  const navigate = useNavigate();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
   const { data: products = [], isLoading } = useFeaturedProducts();
+
+  // Function to handle "See Items" click
+  const handleSeeItemsClick = () => {
+    navigate('/products');
+  };
 
   useEffect(() => {
     const checkScrollability = () => {
@@ -123,16 +129,15 @@ const FeaturedProducts: React.FC = () => {
               Our most popular late-night snacks and beverages
             </p>
           </div>
-          <Link to="/products">
-            <Button 
-              variant="ghost" 
-              className="text-nitebite-accent hover:text-nitebite-accent-light mt-4 md:mt-0 self-start animate-fade-in flex items-center gap-2 group glassmorphic-ghost-button"
-              style={{ animationDelay: '200ms' }}
-            >
-              View All Products 
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Button>
-          </Link>
+          <Button 
+            variant="ghost" 
+            className="text-nitebite-accent hover:text-nitebite-accent-light mt-4 md:mt-0 self-start animate-fade-in flex items-center gap-2 group glassmorphic-ghost-button"
+            style={{ animationDelay: '200ms' }}
+            onClick={handleSeeItemsClick}
+          >
+            See Items 
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </Button>
         </div>
         
         <div className="relative">
@@ -159,7 +164,7 @@ const FeaturedProducts: React.FC = () => {
                 ? [product.image_url]
                 : Array.isArray(product.image_url) 
                   ? product.image_url 
-                  : ['/fallback-image.jpg'];
+                  : ['/placeholder.svg'];
 
               const imageUrl = imageUrls[0] || '/fallback-image.jpg';
 
@@ -170,12 +175,11 @@ const FeaturedProducts: React.FC = () => {
                   style={{ scrollSnapAlign: 'start' }}
                 >
                   <ProductCard 
-                    product={{ 
-                      ...product, 
+                    product={{
+                      ...product,
                       image: imageUrl,
-                      // Make sure we have a category property to satisfy TypeScript
-                      category: product.category || (product as any).category_id || "unknown"
-                    }} 
+                      category: product.category || product.category_id || '' 
+                    }}
                     index={index} 
                   />
                 </div>

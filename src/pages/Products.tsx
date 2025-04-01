@@ -8,6 +8,7 @@ import { useProducts, useCategories } from '@/hooks/use-products';
 import ProductsHeader from '@/components/products/ProductsHeader';
 import CategoriesSidebar from '@/components/products/CategoriesSidebar';
 import ProductsList from '@/components/products/ProductsList';
+import PromoBanner from '@/components/PromoBanner';
 import type { Product } from '@/components/ProductCard';
 
 const Products = () => {
@@ -81,6 +82,7 @@ const Products = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-nitebite-dark">
+      <PromoBanner />
       <ProductsHeader onSearch={handleSearch} />
 
       <div className="flex-1 flex overflow-hidden">
