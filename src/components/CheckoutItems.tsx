@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -19,7 +20,7 @@ const CheckoutItems = () => {
         </p>
         <Button
           className="glassmorphic-button text-white"
-          onClick={() => navigate('/#category-section')}
+          onClick={() => navigate('/products')}
         >
           Browse Menu
         </Button>
@@ -40,7 +41,7 @@ const CheckoutItems = () => {
             className="flex items-center gap-4 p-4 bg-nitebite-dark-accent/60 backdrop-blur-md rounded-xl"
           >
             <img
-              src={item.image}
+              src={item.image || (Array.isArray(item.image_url) ? item.image_url[0] : item.image_url)}
               alt={item.name}
               className="w-20 h-20 object-cover rounded-lg"
             />
@@ -50,7 +51,7 @@ const CheckoutItems = () => {
                 {item.name}
               </h3>
               <p className="text-nitebite-text-muted text-sm">
-                ₹{(item.price * 80).toFixed(2)} each
+                ₹{item.price.toFixed(2)} each
               </p>
             </div>
 

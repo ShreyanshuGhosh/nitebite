@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ShoppingBag } from 'lucide-react';
@@ -7,6 +8,7 @@ import { useProducts, useCategories } from '@/hooks/use-products';
 import ProductsHeader from '@/components/products/ProductsHeader';
 import CategoriesSidebar from '@/components/products/CategoriesSidebar';
 import ProductsList from '@/components/products/ProductsList';
+import type { Product } from '@/components/ProductCard';
 
 const Products = () => {
   const location = useLocation();
@@ -21,7 +23,7 @@ const Products = () => {
   const itemCount = useCartStore(state => state.getItemCount());
 
   const { data: categories = [], isLoading: categoriesLoading } = useCategories();
-  const { data: products = [], isLoading: productsLoading } = useProducts(selectedCategory);
+  const { data: productsData = [], isLoading: productsLoading } = useProducts(selectedCategory);
 
   // Watch for URL changes to update selected category
   useEffect(() => {
@@ -32,11 +34,11 @@ const Products = () => {
 
   // Filter products based on search query
   const filteredProducts = searchQuery
-    ? products.filter((product) => 
+    ? productsData.filter((product) => 
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
         product.description?.toLowerCase().includes(searchQuery.toLowerCase())
       )
-    : products;
+    : productsData;
 
   const handleCategorySelect = (categoryId: string) => {
     setSelectedCategory(categoryId);
@@ -66,21 +68,14 @@ const Products = () => {
     );
   }
 
-  // Process products to ensure image URLs are in the correct format
-  const processedProducts = filteredProducts.map(product => {
-    // Convert image_url to array if it's a string
-    const imageUrls = typeof product.image_url === 'string'
-      ? [product.image_url]
-      : Array.isArray(product.image_url)
-        ? product.image_url
-        : ['/fallback-image.jpg'];
-
-    // Get the first image URL or fallback
-    const imageUrl = imageUrls[0] || '/fallback-image.jpg';
-
+  // Process products to ensure they have all required fields
+  const products: Product[] = filteredProducts.map(product => {
     return {
       ...product,
-      imageUrl // Add a single imageUrl property for the ProductCard
+      category: product.category_id || "unknown", // Map category_id to category
+      image_url: typeof product.image_url === 'string' ? product.image_url : (
+        Array.isArray(product.image_url) && product.image_url.length > 0 ? product.image_url : ['/placeholder.svg']
+      )
     };
   });
 
@@ -96,7 +91,7 @@ const Products = () => {
         />
 
         <ProductsList 
-          products={processedProducts}
+          products={products}
           title={listTitle}
           isSearching={!!searchQuery}
         />

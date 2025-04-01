@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -320,18 +321,18 @@ const Account = () => {
                 </p>
                 <div className="space-y-3">
                   <a
-                    href="mailto:support@nitebite.com"
+                    href="mailto:nitebite4u@gmail.com"
                     className="flex items-center text-nitebite-text hover:text-nitebite-highlight transition-colors"
                   >
                     <Mail className="w-5 h-5 mr-3 text-nitebite-accent" />
-                    support@nitebite.com
+                    nitebite4u@gmail.com
                   </a>
                   <a
-                    href="tel:+1234567890"
+                    href="tel:+919123252856"
                     className="flex items-center text-nitebite-text hover:text-nitebite-highlight transition-colors"
                   >
                     <Phone className="w-5 h-5 mr-3 text-nitebite-accent" />
-                    +1 (234) 567-890
+                    +919123252856
                   </a>
                 </div>
               </div>

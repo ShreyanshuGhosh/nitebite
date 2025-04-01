@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Product } from '@/components/ProductCard';
@@ -59,9 +60,6 @@ const ProductItem: React.FC<ProductItemProps> = ({ product, index }) => {
         
         <div className="p-2 flex-1 flex flex-col">
           <h3 className="font-medium text-sm line-clamp-2">{product.name}</h3>
-          <div className="text-xs text-nitebite-text-muted mb-1">
-            {Math.round(Math.random() * 500 + 50)} g
-          </div>
           
           <div className="mt-auto flex items-center justify-between">
             <div className="flex items-center gap-1">
@@ -76,7 +74,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product, index }) => {
             <Button
               variant="outline"
               size="sm"
-              className="h-8 border-green-500 text-green-500 hover:bg-green-500/10"
+              className="h-8 border-green-500 text-green-500 hover:bg-green-500/10 min-w-[60px]"
               onClick={handleAddToCart}
             >
               ADD

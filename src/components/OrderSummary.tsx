@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -32,8 +33,8 @@ const OrderSummary = () => {
     }
 
     const discountAmount = await validateCoupon(couponCode.trim(), subtotal);
-    if (discountAmount !== null) {
-      updateCouponDiscount(discountAmount);
+    if (discountAmount !== null && typeof discountAmount === 'number') {
+      updateCouponDiscount(discountAmount, couponCode);
       setCouponCode(''); // Clear the input after successful application
     }
   };
