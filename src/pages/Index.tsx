@@ -44,8 +44,8 @@ const Index = () => {
           'http://schema.org/AndroidPlatform',
         ],
       },
-      // Fix schema validation by using an array of strings
-      deliveryMethod: ['DeliveryModeOwnFleet'],
+      // Fix schema validation by using the correct delivery method format
+      deliveryMethod: ['http://schema.org/DeliveryModeOwnFleet'],
     },
     areaServed: {
       '@type': 'Country',

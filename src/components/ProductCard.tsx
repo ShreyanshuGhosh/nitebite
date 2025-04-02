@@ -32,7 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
       name: product.name,
       price: product.price,
       category: product.category || product.category_id || '',
-      description: product.description,
+      description: product.description || '',
       image_url: product.image_url,
     };
     
@@ -77,11 +77,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
           </span>
           <Button 
             size="sm" 
-            className="glassmorphic-button rounded-full h-7 w-7 md:h-8 md:w-8 p-0 flex items-center justify-center shadow-glow-sm"
+            className="glassmorphic-button rounded-full h-8 w-8 p-0 flex items-center justify-center shadow-glow-sm"
             onClick={handleAddToCart}
             aria-label="Add to Box"
           >
-            <Plus className="h-3 w-3 md:h-4 md:w-4" />
+            <Plus className="h-4 w-4" />
           </Button>
         </div>
       </div>

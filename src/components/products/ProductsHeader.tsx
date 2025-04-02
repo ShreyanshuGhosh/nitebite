@@ -47,7 +47,7 @@ const ProductsHeader: React.FC<ProductsHeaderProps> = ({ onSearch }) => {
           
           {!isSearchOpen && (
             <div className="flex flex-col">
-              <h1 className="text-lg font-bold">Delivery in 11 minutes</h1>
+              <h1 className="text-lg font-bold">Delivery in minutes</h1>
               <p className="text-xs text-nitebite-text-muted flex items-center">
                 Your location <span className="ml-1">▼</span>
               </p>

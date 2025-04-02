@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { Search, Clock, MoonStar, ShoppingBag, MapPin } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Hero = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -12,6 +13,7 @@ const Hero = () => {
     seconds: 59,
   });
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -56,7 +58,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-nitebite-dark/50 to-nitebite-dark z-0"></div>
 
       {/* Content */}
-      <div className="page-container relative z-10 text-center px-4 md:px-8">
+      <div className="page-container relative z-10 text-center px-4 md:px-8 mt-10 md:mt-0">
         <motion.h1 
           className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 text-white tracking-tight"
           initial={{ opacity: 0, y: 20 }}
@@ -83,19 +85,19 @@ const Hero = () => {
         >
           <p className="text-xl mb-4 text-white">Launching In:</p>
           <div className="flex justify-center gap-4 md:gap-8 text-center">
-            <div className="w-20">
-              <div className="text-5xl font-bold text-yellow-300">{String(timeLeft.hours).padStart(2, '0')}</div>
-              <div className="text-sm text-nitebite-text-muted">HOURS</div>
+            <div className="w-16 md:w-20">
+              <div className="text-4xl md:text-5xl font-bold text-yellow-300">{String(timeLeft.hours).padStart(2, '0')}</div>
+              <div className="text-xs md:text-sm text-nitebite-text-muted">HOURS</div>
             </div>
             <div className="text-2xl font-bold text-yellow-300 self-center">:</div>
-            <div className="w-20">
-              <div className="text-5xl font-bold text-yellow-300">{String(timeLeft.minutes).padStart(2, '0')}</div>
-              <div className="text-sm text-nitebite-text-muted">MINUTES</div>
+            <div className="w-16 md:w-20">
+              <div className="text-4xl md:text-5xl font-bold text-yellow-300">{String(timeLeft.minutes).padStart(2, '0')}</div>
+              <div className="text-xs md:text-sm text-nitebite-text-muted">MINUTES</div>
             </div>
             <div className="text-2xl font-bold text-yellow-300 self-center">:</div>
-            <div className="w-20">
-              <div className="text-5xl font-bold text-yellow-300">{String(timeLeft.seconds).padStart(2, '0')}</div>
-              <div className="text-sm text-nitebite-text-muted">SECONDS</div>
+            <div className="w-16 md:w-20">
+              <div className="text-4xl md:text-5xl font-bold text-yellow-300">{String(timeLeft.seconds).padStart(2, '0')}</div>
+              <div className="text-xs md:text-sm text-nitebite-text-muted">SECONDS</div>
             </div>
           </div>
         </motion.div>

@@ -15,7 +15,7 @@ const PromoBanner = () => {
       initial={{ height: 0, opacity: 0 }} 
       animate={{ height: 'auto', opacity: 1 }}
       exit={{ height: 0, opacity: 0 }}
-      className="bg-[#ff5200] text-white relative overflow-hidden"
+      className="bg-[#ff5200] text-white relative overflow-hidden z-[60]" // Added z-index to ensure visibility
     >
       <div className="max-w-7xl mx-auto py-2 px-4 sm:px-6 md:py-3 relative">
         <div className="flex items-center justify-center">
