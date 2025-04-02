@@ -43,7 +43,11 @@ const Index = () => {
           'http://schema.org/AndroidPlatform',
         ],
       },
-      deliveryMethod: ['https://schema.org/DeliveryModeOwnFleet'],
+      deliveryMethod: [
+        {
+          '@id': 'https://schema.org/DeliveryModeOwnFleet'
+        }
+      ],
     },
     areaServed: {
       '@type': 'Country',

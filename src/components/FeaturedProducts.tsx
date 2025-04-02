@@ -1,4 +1,3 @@
-
 import React, { useRef, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
@@ -15,7 +14,6 @@ const FeaturedProducts: React.FC = () => {
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
   const { data: products = [], isLoading } = useFeaturedProducts();
 
-  // Function to handle "See Items" click
   const handleSeeItemsClick = () => {
     navigate('/products');
   };
@@ -171,14 +169,13 @@ const FeaturedProducts: React.FC = () => {
               return (
                 <div 
                   key={product.id} 
-                  className="min-w-[280px] sm:min-w-[300px]"
+                  className="min-w-[250px] sm:min-w-[280px]"
                   style={{ scrollSnapAlign: 'start' }}
                 >
                   <ProductCard 
                     product={{
                       ...product,
                       image: imageUrl,
-                      // Fix: Use category_id as the category property if category doesn't exist
                       category: product.category_id || '' 
                     }}
                     index={index} 

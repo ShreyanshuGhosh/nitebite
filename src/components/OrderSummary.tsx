@@ -18,8 +18,8 @@ const OrderSummary = () => {
   const subtotal = calculateSubtotal();
   const freeDeliveryThreshold = 1000;
   const remainingForFreeDelivery = subtotal < freeDeliveryThreshold ? freeDeliveryThreshold - subtotal : 0;
-  const deliveryFee = subtotal >= freeDeliveryThreshold ? 0 : 239.20;
-  const convenienceFee = subtotal > 0 ? subtotal * 0.05 : 0;
+  const deliveryFee = subtotal >= freeDeliveryThreshold ? 0 : 10;
+  const convenienceFee = subtotal > 0 ? 6 : 0;
   
   // Total before discount
   const totalBeforeDiscount = subtotal + deliveryFee + convenienceFee;
@@ -121,7 +121,7 @@ const OrderSummary = () => {
       
       {items.length > 0 && (
         <p className="text-xs text-nitebite-text-muted text-center mt-4">
-          Your order will be delivered in approximately 10 minutes.
+          Your order will be delivered in minutes.
         </p>
       )}
     </div>
