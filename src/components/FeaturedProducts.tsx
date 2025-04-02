@@ -178,7 +178,8 @@ const FeaturedProducts: React.FC = () => {
                     product={{
                       ...product,
                       image: imageUrl,
-                      category: product.category || product.category_id || '' 
+                      // Fix: Use category_id as the category property if category doesn't exist
+                      category: product.category_id || '' 
                     }}
                     index={index} 
                   />

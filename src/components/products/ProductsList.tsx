@@ -34,7 +34,8 @@ const ProductsList: React.FC<ProductsListProps> = ({
       )}
       
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <AnimatePresence mode="wait">
+        {/* Change AnimatePresence from mode="wait" to avoid warnings with multiple children */}
+        <AnimatePresence>
           {products.map((product, index) => (
             <ProductItem 
               key={product.id} 

@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Organization, WithContext } from 'schema-dts';
 import Navbar from '@/components/Navbar';
@@ -44,8 +43,7 @@ const Index = () => {
           'http://schema.org/AndroidPlatform',
         ],
       },
-      // Fix schema validation by using the correct delivery method format
-      deliveryMethod: ['http://schema.org/DeliveryModeOwnFleet'],
+      deliveryMethod: ['https://schema.org/DeliveryModeOwnFleet'],
     },
     areaServed: {
       '@type': 'Country',
