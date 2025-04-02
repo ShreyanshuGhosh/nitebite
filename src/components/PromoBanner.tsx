@@ -15,12 +15,12 @@ const PromoBanner = () => {
       initial={{ height: 0, opacity: 0 }} 
       animate={{ height: 'auto', opacity: 1 }}
       exit={{ height: 0, opacity: 0 }}
-      className="bg-[#ff5200] text-white relative overflow-hidden z-[60]" // Added z-index to ensure visibility
+      className="bg-[#ff5200] text-white relative overflow-hidden z-[60]"
     >
       <div className="max-w-7xl mx-auto py-2 px-4 sm:px-6 md:py-3 relative">
         <div className="flex items-center justify-center">
           <p className="text-center font-medium text-sm md:text-base">
-            Use code <span className="font-bold">'FIRSTBITE'</span> to get ₹25 discount on first order.
+            Use code <span className="font-bold">'FIRSTBITE'</span> to get ₹25 OFF and a FREE GIFT on your first order. (only for first 20 orders)
           </p>
         </div>
         <button 

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -67,7 +66,6 @@ const Account = () => {
       } = await supabase.auth.getUser();
       if (!user) return;
 
-      // Fetch profile by user_id
       const { data: profileData, error } = await supabase
         .from('profiles')
         .select('*')
@@ -86,7 +84,6 @@ const Account = () => {
           phone_number: profileData.phone_number || '',
         });
       } else {
-        // Create a new profile if one doesn't exist
         const { error: createError } = await supabase
           .from('profiles')
           .insert([
@@ -175,7 +172,6 @@ const Account = () => {
             </Button>
           </div>
 
-          {/* Profile Section */}
           <div className="glassmorphic-card p-6 rounded-2xl mb-8">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-medium text-nitebite-highlight">
@@ -247,7 +243,6 @@ const Account = () => {
             )}
           </div>
 
-          {/* Order History */}
           <div className="glassmorphic-card p-6 rounded-2xl mb-8">
             <h2 className="text-xl font-medium text-nitebite-highlight mb-6">
               Order History
@@ -305,7 +300,6 @@ const Account = () => {
             )}
           </div>
 
-          {/* Customer Support */}
           <div className="glassmorphic-card p-6 rounded-2xl">
             <h2 className="text-xl font-medium text-nitebite-highlight mb-6">
               Customer Support
