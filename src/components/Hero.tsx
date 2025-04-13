@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Clock, Wrench } from 'lucide-react';
+import VibeSelector from './VibeSelector';
 
 const Hero = () => {
   // Animation variants
@@ -76,18 +77,17 @@ const Hero = () => {
           animate="visible"
         >
           <motion.h1 
-            className="text-5xl sm:text-6xl md:text-7xl font-bold mb-2 text-nitebite-purple"
+            className="text-5xl sm:text-6xl md:text-7xl font-bold mb-2 text-nitebite-purple whitespace-nowrap"
             variants={itemVariants}
           >
-            Fuel Your <br /> All-Nighters
+            Fuel Your All-Nighters
           </motion.h1>
 
           <motion.p 
             className="text-xl sm:text-2xl mb-6 text-white/90"
             variants={itemVariants}
           >
-            Craving snacks at midnight? <br />
-            We've got you covered!
+            Get snack boxes to (H1–H13) when you need them most.
           </motion.p>
 
           <motion.div
@@ -99,7 +99,7 @@ const Hero = () => {
               asChild
             >
               <Link to="/products">
-                We're Delivering Now!
+                Quick Delivery
               </Link>
             </Button>
           </motion.div>
@@ -120,11 +120,11 @@ const Hero = () => {
           initial="hidden"
           animate="visible"
         >
-          <div className="relative">
+          <div className="relative w-full max-w-sm">
             <img 
               src="https://images.pexels.com/photos/31616946/pexels-photo-31616946.png?auto=compress&cs=tinysrgb&w=600&lazy=load" 
               alt="NiteBite delivery box with snacks" 
-              className="w-full max-w-md animate-float-box"
+              className="w-full animate-float-box"
             />
             
             {/* Star decoration */}
@@ -143,6 +143,9 @@ const Hero = () => {
         </motion.div>
       </div>
 
+      {/* Vibe Selector Section */}
+      <VibeSelector />
+
       {/* Build Your Own Section */}
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="glassmorphic-card p-8 rounded-xl">
@@ -155,7 +158,7 @@ const Hero = () => {
                 asChild
               >
                 <Link to="/build">
-                  Start Building
+                  Customize Your Own Box
                 </Link>
               </Button>
             </div>
