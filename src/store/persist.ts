@@ -85,10 +85,10 @@ export const persist = <T>(config: PersistOptions<T>) => (
     }
   };
 
-  // Return the result of the feature
+  // Return the state and functions
   return {
     ...api,
-    set: persistedSet,
     state: state,
+    set: persistedSet,
   };
 };
