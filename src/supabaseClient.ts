@@ -1,11 +1,7 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-const supabaseUrl: string = import.meta.env.VITE_SUPABASE_URL as string;
-const supabaseAnonKey: string = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
+import { createClient } from '@supabase/supabase-js';
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
-}
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://puckwihzpprgpgepusmz.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB1Y2t3aWh6cHByZ3BnZXB1c216Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI5MjM0ODMsImV4cCI6MjAyODQ5OTQ4M30.aPemcVPXKk-FvEe8Q5eJeA5CU4g_uZkHrwZOODLXl3g';
 
-// Explicitly define Supabase client type
-export const supabase: SupabaseClient = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
