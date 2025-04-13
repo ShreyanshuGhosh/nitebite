@@ -1,5 +1,5 @@
 
-import { StateStorage, StorageValue } from 'zustand/middleware';
+import { StateStorage } from 'zustand/middleware';
 
 // Define a type for the persist options
 export interface PersistOptions<T> {
@@ -20,18 +20,18 @@ export const persist = <T>(config: PersistOptions<T>) => (
 ) => {
   // Implementation of persist middleware
   const defaultStorage: StateStorage = {
-    getItem: (name: string): StorageValue => {
+    getItem: (name: string): string | null => {
       try {
         const value = localStorage.getItem(name);
-        return value ? JSON.parse(value) : null;
+        return value;
       } catch (error) {
         console.error(error);
         return null;
       }
     },
-    setItem: (name: string, value: StorageValue): void => {
+    setItem: (name: string, value: string): void => {
       try {
-        localStorage.setItem(name, JSON.stringify(value));
+        localStorage.setItem(name, value);
       } catch (error) {
         console.error(error);
       }

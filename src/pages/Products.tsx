@@ -21,7 +21,7 @@ const Products = () => {
   );
   const [searchQuery, setSearchQuery] = useState<string>('');
   const navigate = useNavigate();
-  const itemCount = useCartStore(state => state.getItemCount());
+  const itemCount = useCartStore((state) => state.getItemCount());
 
   const { data: categories = [], isLoading: categoriesLoading } = useCategories();
   const { data: productsData = [], isLoading: productsLoading } = useProducts(selectedCategory);
@@ -69,7 +69,7 @@ const Products = () => {
     );
   }
 
-  // The products already have the correct type from our hook
+  // Make sure we have original_price for all products
   const products: Product[] = filteredProducts.map(product => ({
     ...product,
     original_price: product.original_price || product.price // Ensure original_price is always present

@@ -1,3 +1,4 @@
+
 import { create } from 'zustand';
 import { persist } from './persist';
 import { toast } from 'sonner';
@@ -23,8 +24,15 @@ interface CartStore {
 }
 
 export const useCartStore = create<CartStore>()(
-  persist({
+  (set, get) => persist<CartStore>({
     name: 'nitebite-cart',
+    // Initial state and methods
+    partialize: (state) => ({
+      items: state.items,
+      couponDiscount: state.couponDiscount,
+      appliedCouponCode: state.appliedCouponCode,
+    }),
+  })({
     items: [],
     couponDiscount: 0,
     appliedCouponCode: null,

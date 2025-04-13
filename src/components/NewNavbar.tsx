@@ -19,7 +19,7 @@ const NewNavbar: React.FC<NavbarProps> = ({ transparent = false }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   
-  const itemCount = useCartStore(state => state.getItemCount());
+  const itemCount = useCartStore((state) => state.getItemCount());
 
   // Check if we're on the homepage
   const isHomePage = location.pathname === '/';

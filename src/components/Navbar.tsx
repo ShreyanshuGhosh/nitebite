@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -11,14 +12,14 @@ interface NavbarProps {
   transparent?: boolean;
 }
 
-const NewNavbar: React.FC<NavbarProps> = ({ transparent = false }) => {
+const Navbar: React.FC<NavbarProps> = ({ transparent = false }) => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   
-  const itemCount = useCartStore(state => state.getItemCount());
+  const itemCount = useCartStore((state) => state.getItemCount());
 
   // Check if we're on the homepage
   const isHomePage = location.pathname === '/';
@@ -232,4 +233,4 @@ const NewNavbar: React.FC<NavbarProps> = ({ transparent = false }) => {
   );
 };
 
-export default NewNavbar;
+export default Navbar;

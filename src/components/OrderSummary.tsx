@@ -9,7 +9,14 @@ import { useNavigate } from 'react-router-dom';
 import { useCoupon } from '@/hooks/use-coupon';
 
 const OrderSummary = () => {
-  const { items, calculateSubtotal, updateCouponDiscount, couponDiscount } = useCartStore();
+  const { items, calculateSubtotal, updateCouponDiscount, couponDiscount } = useCartStore(
+    (state) => ({
+      items: state.items,
+      calculateSubtotal: state.calculateSubtotal,
+      updateCouponDiscount: state.updateCouponDiscount,
+      couponDiscount: state.couponDiscount
+    })
+  );
   const [isProcessing, setIsProcessing] = useState(false);
   const [couponCode, setCouponCode] = useState('');
   const navigate = useNavigate();
