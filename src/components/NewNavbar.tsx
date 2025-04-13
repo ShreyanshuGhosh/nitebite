@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -17,7 +18,6 @@ const NewNavbar: React.FC<NavbarProps> = ({ transparent = false }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   
-  // Fix: Use getItemCount function directly
   const itemCount = useCartStore((state) => state.getItemCount());
 
   // Check if we're on the homepage
