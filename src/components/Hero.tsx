@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Clock, Tool } from 'lucide-react';
+import { Clock, Wrench } from 'lucide-react';
 
 const Hero = () => {
   // Animation variants
@@ -188,7 +188,7 @@ const Hero = () => {
                     </motion.div>
                   ))}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <Tool className="w-10 h-10 text-nitebite-yellow" />
+                    <Wrench className="w-10 h-10 text-nitebite-yellow" />
                   </div>
                 </motion.div>
               </div>

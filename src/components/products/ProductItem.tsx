@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Product } from '@/components/ProductCard';
@@ -32,9 +33,18 @@ const ProductItem: React.FC<ProductItemProps> = ({ product, index }) => {
       ? product.image_url[0] 
       : product.image_url;
 
+    // Create product data to match CartItem type
     const productForCart = {
-      ...product,
-      image: imageUrl // Set the image property for cart display
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      original_price: product.original_price,
+      image_url: imageUrl,
+      image: imageUrl,
+      category: product.category || '',
+      category_id: product.category_id || '',
+      description: product.description || '',
+      stock_quantity: product.stock_quantity
     };
 
     addItem(productForCart);

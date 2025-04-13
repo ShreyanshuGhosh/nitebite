@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
@@ -35,15 +36,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
       return;
     }
 
-    // Create a new product object that matches what the cart expects
-    const productForCart: Product = {
+    // Create product data to match CartItem type
+    const productForCart = {
       id: product.id,
       name: product.name,
       price: product.price,
       original_price: product.original_price,
-      category: product.category || product.category_id || '',
+      image_url: typeof product.image_url === 'string' ? product.image_url : product.image_url[0],
+      image: typeof product.image_url === 'string' ? product.image_url : product.image_url[0],
+      category: product.category || '',
+      category_id: product.category_id || '',
       description: product.description || '',
-      image_url: product.image_url,
       stock_quantity: product.stock_quantity
     };
     
