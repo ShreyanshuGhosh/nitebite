@@ -33,98 +33,95 @@ type CartStore = {
 };
 
 export const useCartStore = create<CartStore>()(
-  persist(
-    {
-      name: 'nitebite-cart',
+  persist((set, get) => ({
+    items: [],
+    couponDiscount: 0,
+    couponCode: null,
+    
+    addItem: (item) => {
+      const currentItems = get().items;
+      const existingItem = currentItems.find(i => i.id === item.id);
+      
+      if (existingItem) {
+        set({
+          items: currentItems.map(i => 
+            i.id === item.id 
+              ? { ...i, quantity: i.quantity + 1 } 
+              : i
+          )
+        });
+        toast.success(`Added another ${item.name} to your box!`);
+      } else {
+        set({ 
+          items: [...currentItems, { 
+            ...item, 
+            quantity: item.quantity || 1,
+            image: item.image || (Array.isArray(item.image_url) ? item.image_url[0] : item.image_url)
+          }] 
+        });
+        toast.success(`${item.name} added to your box!`);
+      }
     },
-    (set, get) => ({
-      items: [],
-      couponDiscount: 0,
-      couponCode: null,
+    
+    removeItem: (id: string) => {
+      const currentItems = get().items;
+      const itemToRemove = currentItems.find(i => i.id === id);
       
-      addItem: (item) => {
-        const currentItems = get().items;
-        const existingItem = currentItems.find(i => i.id === item.id);
-        
-        if (existingItem) {
-          set({
-            items: currentItems.map(i => 
-              i.id === item.id 
-                ? { ...i, quantity: i.quantity + 1 } 
-                : i
-            )
-          });
-          toast.success(`Added another ${item.name} to your box!`);
-        } else {
-          set({ 
-            items: [...currentItems, { 
-              ...item, 
-              quantity: item.quantity || 1,
-              image: item.image || (Array.isArray(item.image_url) ? item.image_url[0] : item.image_url)
-            }] 
-          });
-          toast.success(`${item.name} added to your box!`);
-        }
-      },
+      if (itemToRemove) {
+        set({ items: currentItems.filter(i => i.id !== id) });
+        toast.info(`${itemToRemove.name} removed from your box`);
+      }
+    },
+    
+    updateQuantity: (id: string, quantity: number) => {
+      const currentItems = get().items;
       
-      removeItem: (id: string) => {
-        const currentItems = get().items;
+      if (quantity <= 0) {
         const itemToRemove = currentItems.find(i => i.id === id);
-        
         if (itemToRemove) {
           set({ items: currentItems.filter(i => i.id !== id) });
           toast.info(`${itemToRemove.name} removed from your box`);
         }
-      },
-      
-      updateQuantity: (id: string, quantity: number) => {
-        const currentItems = get().items;
-        
-        if (quantity <= 0) {
-          const itemToRemove = currentItems.find(i => i.id === id);
-          if (itemToRemove) {
-            set({ items: currentItems.filter(i => i.id !== id) });
-            toast.info(`${itemToRemove.name} removed from your box`);
-          }
-        } else {
-          set({
-            items: currentItems.map(i => 
-              i.id === id ? { ...i, quantity } : i
-            )
-          });
-        }
-      },
-      
-      // Alias for updateQuantity to match component usage
-      updateItemQuantity: (id: string, quantity: number) => {
-        get().updateQuantity(id, quantity);
-      },
-      
-      clearCart: () => {
-        set({ items: [] });
-        toast.info("Your box is now empty");
-      },
-      
-      getItemCount: () => {
-        return get().items.reduce((total, item) => total + item.quantity, 0);
-      },
-      
-      getTotal: () => {
-        return get().items.reduce((total, item) => total + (item.price * item.quantity), 0);
-      },
-      
-      // Alias for getTotal to match component usage
-      calculateSubtotal: () => {
-        return get().getTotal();
-      },
-      
-      // Add coupon discount functionality
-      updateCouponDiscount: (amount: number, code: string) => {
-        set({ 
-          couponDiscount: amount,
-          couponCode: code
+      } else {
+        set({
+          items: currentItems.map(i => 
+            i.id === id ? { ...i, quantity } : i
+          )
         });
       }
-    })
-  )
+    },
+    
+    // Alias for updateQuantity to match component usage
+    updateItemQuantity: (id: string, quantity: number) => {
+      get().updateQuantity(id, quantity);
+    },
+    
+    clearCart: () => {
+      set({ items: [] });
+      toast.info("Your box is now empty");
+    },
+    
+    getItemCount: () => {
+      return get().items.reduce((total, item) => total + item.quantity, 0);
+    },
+    
+    getTotal: () => {
+      return get().items.reduce((total, item) => total + (item.price * item.quantity), 0);
+    },
+    
+    // Alias for getTotal to match component usage
+    calculateSubtotal: () => {
+      return get().getTotal();
+    },
+    
+    // Add coupon discount functionality
+    updateCouponDiscount: (amount: number, code: string) => {
+      set({ 
+        couponDiscount: amount,
+        couponCode: code
+      });
+    }
+  }), {
+    name: 'nitebite-cart',
+  })
 );

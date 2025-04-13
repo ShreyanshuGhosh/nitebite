@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -18,9 +17,8 @@ const NewNavbar: React.FC<NavbarProps> = ({ transparent = false }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   
-  // Fix: Get cart items and calculate count directly
-  const items = useCartStore((state) => state.items);
-  const itemCount = items.reduce((total, item) => total + item.quantity, 0);
+  // Fix: Use getItemCount function directly
+  const itemCount = useCartStore((state) => state.getItemCount());
 
   // Check if we're on the homepage
   const isHomePage = location.pathname === '/';
