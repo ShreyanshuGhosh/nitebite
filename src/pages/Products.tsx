@@ -70,7 +70,10 @@ const Products = () => {
   }
 
   // The products already have the correct type from our hook
-  const products: Product[] = filteredProducts;
+  const products: Product[] = filteredProducts.map(product => ({
+    ...product,
+    original_price: product.original_price || product.price // Ensure original_price is always present
+  }));
 
   return (
     <div className="flex flex-col min-h-screen bg-nitebite-midnight">

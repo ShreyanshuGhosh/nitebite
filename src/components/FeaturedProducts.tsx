@@ -176,7 +176,8 @@ const FeaturedProducts: React.FC = () => {
                     product={{
                       ...product,
                       image: imageUrl,
-                      category: product.category_id || '' 
+                      category: product.category_id || '',
+                      original_price: product.original_price || product.price
                     }}
                     index={index} 
                   />
