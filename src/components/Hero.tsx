@@ -105,11 +105,25 @@ const Hero = () => {
           </motion.div>
 
           <motion.div 
-            className="flex items-center gap-2 text-white/70 text-sm"
+            className="flex items-center gap-2 text-white/70 text-sm mb-6"
             variants={itemVariants}
           >
             <Clock className="w-4 h-4 text-nitebite-yellow" />
             <span>Delivery time: 20-30 min</span>
+          </motion.div>
+          
+          {/* New Create Your Own Box button */}
+          <motion.div
+            variants={itemVariants}
+          >
+            <Button 
+              className="glassmorphic-ghost-button border border-nitebite-purple rounded-full py-5 px-6 text-base text-nitebite-purple hover:text-white hover:bg-nitebite-purple/20"
+              asChild
+            >
+              <Link to="/box-builder">
+                Create Your Own Box
+              </Link>
+            </Button>
           </motion.div>
         </motion.div>
 
@@ -157,7 +171,7 @@ const Hero = () => {
                 className="glassmorphic-button rounded-full py-5 px-6 text-base"
                 asChild
               >
-                <Link to="/build">
+                <Link to="/box-builder">
                   Customize Your Own Box
                 </Link>
               </Button>

@@ -17,6 +17,7 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Account from "./pages/Account";
+import BoxBuilder from "./pages/BoxBuilder";
 
 // Create Supabase Context
 const SupabaseContext = createContext(supabase);
@@ -41,6 +42,7 @@ const App = () => (
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/account" element={<Account />} />
+                <Route path="/box-builder" element={<BoxBuilder />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
