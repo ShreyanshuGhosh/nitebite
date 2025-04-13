@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ShoppingBag, Search, User, Menu, X } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
-import NiteBiteLogo from './NiteBiteLogo';
 
 interface NavbarProps {
   transparent?: boolean;
@@ -19,7 +18,8 @@ const NewNavbar: React.FC<NavbarProps> = ({ transparent = false }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   
-  const itemCount = useCartStore((state) => state.getItemCount());
+  const cartItems = useCartStore((state) => state.items);
+  const itemCount = cartItems.length;
 
   // Check if we're on the homepage
   const isHomePage = location.pathname === '/';
@@ -63,18 +63,24 @@ const NewNavbar: React.FC<NavbarProps> = ({ transparent = false }) => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <NiteBiteLogo />
+            <Link to="/" className="flex items-center">
+              <img 
+                src="/lovable-uploads/647f54ee-3e71-4cf4-9a89-2f2b3405ff16.png" 
+                alt="NiteBite Logo" 
+                className="h-8 md:h-10"
+              />
+            </Link>
 
             {/* Navigation - Desktop */}
             <nav className="hidden md:flex items-center space-x-8">
-              <Link to="/" className={`font-medium transition-colors duration-300 ${isHomePage ? 'text-nitebite-yellow' : 'text-white hover:text-nitebite-purple'}`}>
-                Home
+              <Link to="/boxes" className="font-medium text-white hover:text-nitebite-purple transition-colors duration-300">
+                Boxes
+              </Link>
+              <Link to="/build" className="font-medium text-white hover:text-nitebite-purple transition-colors duration-300">
+                Build Your Box
               </Link>
               <Link to="/products" className="font-medium text-white hover:text-nitebite-purple transition-colors duration-300">
-                Products
-              </Link>
-              <Link to="/checkout" className="font-medium text-white hover:text-nitebite-purple transition-colors duration-300">
-                My Box
+                All Items
               </Link>
             </nav>
 
@@ -183,18 +189,25 @@ const NewNavbar: React.FC<NavbarProps> = ({ transparent = false }) => {
                   Home
                 </Link>
                 <Link
+                  to="/boxes"
+                  className="font-medium text-white hover:text-nitebite-yellow py-2 transition-colors duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Boxes
+                </Link>
+                <Link
+                  to="/build"
+                  className="font-medium text-white hover:text-nitebite-yellow py-2 transition-colors duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Build Your Box
+                </Link>
+                <Link
                   to="/products"
                   className="font-medium text-white hover:text-nitebite-yellow py-2 transition-colors duration-300"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Products
-                </Link>
-                <Link
-                  to="/checkout"
-                  className="font-medium text-white hover:text-nitebite-yellow py-2 transition-colors duration-300"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  My Box
+                  All Items
                 </Link>
                 <Link
                   to="/account"

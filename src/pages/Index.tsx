@@ -3,11 +3,9 @@ import React, { useEffect } from 'react';
 import { Organization, WithContext } from 'schema-dts';
 import NewNavbar from '@/components/NewNavbar';
 import Hero from '@/components/Hero';
-import CategorySelector from '@/components/CategorySelector';
-import FeaturedProducts from '@/components/FeaturedProducts';
+import CuratedBoxes from '@/components/CuratedBoxes';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
-import HowItWorks from '@/components/HowItWorks';
 import SEO from '@/components/SEO';
 import PromoBanner from '@/components/PromoBanner';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -48,11 +46,7 @@ const Index = () => {
         <NewNavbar transparent={true} />
         <main>
           <Hero />
-          <div id="category-section">
-            <CategorySelector />
-          </div>
-          <FeaturedProducts />
-          <HowItWorks />
+          <CuratedBoxes />
         </main>
         <BackToTop />
         <Footer />
