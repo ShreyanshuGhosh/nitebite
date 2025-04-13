@@ -122,7 +122,7 @@ const Hero = () => {
         >
           <div className="relative">
             <img 
-              src="/lovable-uploads/1f65534c-81f1-4ca7-b2ab-5286a9b5508e.png" 
+              src="https://images.pexels.com/photos/31616946/pexels-photo-31616946.png?auto=compress&cs=tinysrgb&w=600&lazy=load" 
               alt="NiteBite delivery box with snacks" 
               className="w-full max-w-md animate-float-box"
             />
