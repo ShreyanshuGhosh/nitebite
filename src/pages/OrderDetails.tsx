@@ -27,9 +27,8 @@ const OrderDetails = () => {
   const [email, setEmail] = useState('');
   const [customerName, setCustomerName] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState('qr'); // either 'cod' or 'qr'
+  const [paymentMethod, setPaymentMethod] = useState<"cod" | "qr">("cod");
 
-  // Redirect if cart is empty and pre-fill contact details if available
   useEffect(() => {
     if (items.length === 0) {
       navigate('/checkout');
@@ -56,12 +55,10 @@ const OrderDetails = () => {
     checkUser();
   }, [items.length, navigate]);
 
-  // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Calculations for fees and totals
   const subtotal = calculateSubtotal();
   const freeDeliveryThreshold = 149;
   const remainingForFreeDelivery = subtotal < freeDeliveryThreshold ? freeDeliveryThreshold - subtotal : 0;
@@ -97,7 +94,6 @@ const OrderDetails = () => {
       const orderData = {
         user_id: user.id,
         amount: total,
-        // Map through cart items to prepare order details
         items: items.map(item => ({
           id: item.id,
           name: item.name,
@@ -114,7 +110,6 @@ const OrderDetails = () => {
         coupon_discount: couponDiscount ? Math.min(couponDiscount, subtotal) : 0,
       };
 
-      // Insert the order (this will trigger the stock decrement on the backend)
       const { data, error } = await supabase
         .from('orders')
         .insert([orderData])
@@ -122,7 +117,6 @@ const OrderDetails = () => {
         .single();
       if (error) throw error;
 
-      // Record coupon usage if applicable
       if (couponDiscount && couponDiscount > 0) {
         const appliedCouponCode = "FIRSTBIT";
         const { data: couponData, error: couponError } = await supabase
@@ -143,7 +137,6 @@ const OrderDetails = () => {
         }
       }
 
-      // Update user's profile
       const { error: profileError } = await supabase
         .from('profiles')
         .upsert({
@@ -167,6 +160,10 @@ const OrderDetails = () => {
     } finally {
       setIsProcessing(false);
     }
+  };
+
+  const handlePaymentMethodChange = (method: "cod" | "qr") => {
+    setPaymentMethod(method);
   };
 
   return (
@@ -193,7 +190,6 @@ const OrderDetails = () => {
             <h1 className="text-3xl font-bold text-nitebite-highlight">Order Details</h1>
           </div>
 
-          {/* Contact Information */}
           <div className="glassmorphic-card p-4 md:p-6 rounded-2xl mb-8">
             <h2 className="text-xl font-medium text-nitebite-highlight mb-6">Contact Information</h2>
             <div className="space-y-6">
@@ -239,7 +235,6 @@ const OrderDetails = () => {
             </div>
           </div>
 
-          {/* Delivery Information */}
           <div className="glassmorphic-card p-4 md:p-6 rounded-2xl mb-8">
             <h2 className="text-xl font-medium text-nitebite-highlight mb-6">Delivery Information</h2>
             <div className="space-y-6">
@@ -276,7 +271,6 @@ const OrderDetails = () => {
             </div>
           </div>
 
-          {/* Order Summary */}
           <div className="glassmorphic-card p-4 md:p-6 rounded-2xl mb-8">
             <h2 className="text-xl font-medium text-nitebite-highlight mb-4">Order Summary</h2>
             <div className="space-y-3 mb-6">
@@ -317,16 +311,14 @@ const OrderDetails = () => {
             )}
           </div>
 
-          {/* Payment Options */}
           <PaymentOptions 
             selectedMethod={paymentMethod}
-            onMethodChange={setPaymentMethod}
+            onMethodChange={handlePaymentMethodChange}
             totalAmount={total}
           />
         </div>
       </main>
 
-      {/* Sticky Checkout Button */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-nitebite-dark/95 backdrop-blur-md border-t border-white/10 z-40">
         <div className="max-w-lg mx-auto">
           <p className="text-xs text-nitebite-text-muted text-center mb-3">

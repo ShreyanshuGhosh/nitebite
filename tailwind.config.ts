@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -74,9 +73,17 @@ export default {
           'accent-light': '#7DD3FC', // Lighter blue
           text: '#F3F4F6', // Light gray
           'text-muted': '#9CA3AF', // Muted gray
-          highlight: '#D6BCFA', // Light purple for highlights (changed from yellow)
+          highlight: '#D6BCFA', // Light purple for highlights
           success: '#10B981', // Emerald green
           warning: '#F59E0B', // Amber
+          
+          midnight: '#171733', // Deep midnight blue (background)
+          purple: '#A898FF', // Lavender purple (headings)
+          yellow: '#F4C842', // Moon yellow (accents, CTAs)
+          red: '#FF5E5E', // Snack red (alerts, discounts)
+          green: '#58B368', // Healthy green (healthy options)
+          orange: '#FFA500', // Energy orange (energy items)
+          royal: '#6A0DAD', // Luxury purple (premium options)
         }
       },
       borderRadius: {
@@ -87,6 +94,8 @@ export default {
       boxShadow: {
         'subtle': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
         'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.05)',
+        'glow': '0 0 15px rgba(168, 152, 255, 0.5)',
+        'yellow-glow': '0 0 15px rgba(244, 200, 66, 0.5)',
       },
       keyframes: {
         'accordion-down': {
@@ -121,6 +130,26 @@ export default {
           '0%': { transform: 'scale(0.95)' },
           '100%': { transform: 'scale(1)' },
         },
+        'float-box': {
+          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+          '50%': { transform: 'translateY(-10px) rotate(2deg)' },
+        },
+        'bounce-soft': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-5px)' },
+        },
+        'slide-in-bottom': {
+          '0%': { transform: 'translateY(100%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        'glow-pulse': {
+          '0%, 100%': { boxShadow: '0 0 10px rgba(168, 152, 255, 0.5)' },
+          '50%': { boxShadow: '0 0 20px rgba(168, 152, 255, 0.8)' },
+        },
+        'glow-pulse-yellow': {
+          '0%, 100%': { boxShadow: '0 0 10px rgba(244, 200, 66, 0.5)' },
+          '50%': { boxShadow: '0 0 20px rgba(244, 200, 66, 0.8)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -131,13 +160,18 @@ export default {
         'soft-pulse': 'soft-pulse 3s ease-in-out infinite',
         'float': 'float 3s ease-in-out infinite',
         'scale': 'scale 0.3s ease-out forwards',
+        'float-box': 'float-box 5s ease-in-out infinite',
+        'bounce-soft': 'bounce-soft 2s ease-in-out infinite',
+        'slide-in-bottom': 'slide-in-bottom 0.5s ease-out forwards',
+        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+        'glow-pulse-yellow': 'glow-pulse-yellow 3s ease-in-out infinite',
       },
       transitionDuration: {
         '400': '400ms',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-pattern': 'linear-gradient(to bottom, rgba(18, 18, 18, 0.8) 0%, rgba(18, 18, 18, 1) 100%)',
+        'hero-pattern': 'linear-gradient(to bottom, rgba(23, 23, 51, 0.8) 0%, rgba(23, 23, 51, 1) 100%)',
       },
     }
   },

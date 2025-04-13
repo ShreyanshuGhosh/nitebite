@@ -16,6 +16,9 @@ export interface Product {
   category_id?: string;
   description?: string;
   stock_quantity: number;
+  is_featured?: boolean;
+  created_at?: string;
+  updated_at?: string;
 }
 
 interface ProductCardProps {

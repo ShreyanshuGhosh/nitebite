@@ -63,25 +63,17 @@ const Products = () => {
 
   if (categoriesLoading || productsLoading) {
     return (
-      <div className="min-h-screen bg-nitebite-dark flex items-center justify-center">
-        <div className="w-16 h-16 border-4 border-nitebite-accent rounded-full animate-spin border-t-transparent"></div>
+      <div className="min-h-screen bg-nitebite-midnight flex items-center justify-center">
+        <div className="w-16 h-16 border-4 border-nitebite-purple rounded-full animate-spin border-t-transparent"></div>
       </div>
     );
   }
 
-  // Process products to ensure they have all required fields
-  const products: Product[] = filteredProducts.map(product => {
-    return {
-      ...product,
-      category: product.category_id || "unknown", // Map category_id to category
-      image_url: typeof product.image_url === 'string' ? product.image_url : (
-        Array.isArray(product.image_url) && product.image_url.length > 0 ? product.image_url : ['/placeholder.svg']
-      )
-    };
-  });
+  // The products already have the correct type from our hook
+  const products: Product[] = filteredProducts;
 
   return (
-    <div className="flex flex-col min-h-screen bg-nitebite-dark">
+    <div className="flex flex-col min-h-screen bg-nitebite-midnight">
       <PromoBanner />
       <ProductsHeader onSearch={handleSearch} />
 
@@ -103,12 +95,12 @@ const Products = () => {
       <div className="fixed bottom-5 right-5 z-40 md:hidden">
         <Button
           onClick={() => navigate('/checkout')}
-          className="glassmorphic-button rounded-full w-14 h-14 flex items-center justify-center shadow-glow"
+          className="glassmorphic-button rounded-full w-14 h-14 flex items-center justify-center shadow-yellow-glow"
           aria-label="Go to cart"
         >
           <ShoppingBag className="h-6 w-6" />
           {itemCount > 0 && (
-            <span className="absolute -top-1 -right-1 bg-white text-nitebite-accent text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+            <span className="absolute -top-1 -right-1 bg-white text-nitebite-midnight text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
               {itemCount}
             </span>
           )}

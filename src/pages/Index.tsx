@@ -1,6 +1,7 @@
+
 import React, { useEffect } from 'react';
 import { Organization, WithContext } from 'schema-dts';
-import Navbar from '@/components/Navbar';
+import NewNavbar from '@/components/NewNavbar';
 import Hero from '@/components/Hero';
 import CategorySelector from '@/components/CategorySelector';
 import FeaturedProducts from '@/components/FeaturedProducts';
@@ -32,53 +33,6 @@ const Index = () => {
       'https://www.instagram.com/nitebit.e/',
       'https://linkedin.com/company/nitebite',
     ],
-    potentialAction: {
-      '@type': 'OrderAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: 'https://nitebite.com/products',
-        actionPlatform: [
-          'http://schema.org/DesktopWebPlatform',
-          'http://schema.org/IOSPlatform',
-          'http://schema.org/AndroidPlatform',
-        ],
-      },
-      deliveryMethod: [
-        {
-          '@id': 'https://schema.org/DeliveryModeOwnFleet'
-        }
-      ],
-    },
-    areaServed: {
-      '@type': 'Country',
-      name: 'India',
-    },
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday',
-      ],
-      opens: '00:00',
-      closes: '23:59',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '1250',
-    },
-    offers: {
-      '@type': 'AggregateOffer',
-      lowPrice: '1.99',
-      highPrice: '29.99',
-      priceCurrency: 'INR',
-      offerCount: '1000+',
-    },
   };
 
   return (
@@ -91,7 +45,7 @@ const Index = () => {
       >
         <SEO schema={schema} />
         <PromoBanner />
-        <Navbar transparent={true} />
+        <NewNavbar transparent={true} />
         <main>
           <Hero />
           <div id="category-section">

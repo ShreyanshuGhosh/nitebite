@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { toast } from 'sonner';
 import { Product } from '@/components/ProductCard';
 import { supabase } from '@/lib/supabase';
 

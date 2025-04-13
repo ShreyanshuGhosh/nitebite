@@ -1,6 +1,7 @@
+
 import { useQuery } from '@tanstack/react-query';
-import { supabase } from '@/lib/supabase';
-import type { Product } from '@/lib/types';
+import { supabase } from '@/supabaseClient';
+import { Product } from '@/components/ProductCard';
 import { useEffect } from 'react';
 
 // Utility to check if a string is a valid UUID
@@ -10,7 +11,7 @@ const isValidUUID = (value: string): boolean => {
 };
 
 export function useProducts(categoryFilter?: string) {
-  const { data, refetch } = useQuery<Product[], Error>({
+  const { data, refetch } = useQuery<Product[]>({
     queryKey: ['products', categoryFilter],
     queryFn: async () => {
       let query;
@@ -46,7 +47,9 @@ export function useProducts(categoryFilter?: string) {
           ? (Array.isArray(product.image_url)
               ? product.image_url
               : [product.image_url])
-          : []
+          : [],
+        // Ensure original_price is always present
+        original_price: product.original_price || product.price,
       })) as Product[];
     },
   });
@@ -79,7 +82,7 @@ export function useProducts(categoryFilter?: string) {
 }
 
 export function useFeaturedProducts() {
-  const { data, refetch } = useQuery<Product[], Error>({
+  const { data, refetch } = useQuery<Product[]>({
     queryKey: ['featured-products'],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -99,7 +102,9 @@ export function useFeaturedProducts() {
           ? (Array.isArray(product.image_url)
               ? product.image_url
               : [product.image_url])
-          : []
+          : [],
+        // Ensure original_price is always present
+        original_price: product.original_price || product.price,
       })) as Product[];
     },
   });
