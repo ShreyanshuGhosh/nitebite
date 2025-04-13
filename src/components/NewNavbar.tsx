@@ -18,8 +18,9 @@ const NewNavbar: React.FC<NavbarProps> = ({ transparent = false }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   
-  // Fix: Get itemCount directly from the getItemCount function
-  const itemCount = useCartStore((state) => state.getItemCount());
+  // Fix: Get cart items and calculate count directly
+  const items = useCartStore((state) => state.items);
+  const itemCount = items.reduce((total, item) => total + item.quantity, 0);
 
   // Check if we're on the homepage
   const isHomePage = location.pathname === '/';

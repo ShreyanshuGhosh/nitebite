@@ -34,6 +34,9 @@ type CartStore = {
 
 export const useCartStore = create<CartStore>()(
   persist(
+    {
+      name: 'nitebite-cart',
+    },
     (set, get) => ({
       items: [],
       couponDiscount: 0,
@@ -122,9 +125,6 @@ export const useCartStore = create<CartStore>()(
           couponCode: code
         });
       }
-    }),
-    {
-      name: 'nitebite-cart',
-    }
+    })
   )
 );
