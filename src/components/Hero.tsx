@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -27,7 +28,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToCuratedBoxes }) => {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-nitebite-midnight">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-nitebite-midnight via-[#1A1F2C] to-nitebite-midnight">
       <div className="absolute inset-0 bg-gradient-to-b from-nitebite-midnight/80 to-nitebite-midnight"></div>
       
       {Array.from({ length: 20 }).map((_, i) => (
@@ -61,10 +62,10 @@ const Hero: React.FC<HeroProps> = ({ scrollToCuratedBoxes }) => {
             className="flex flex-col gap-6"
           >
             <motion.div variants={itemVariants} className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-nitebite-purple">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gradient bg-gradient-to-r from-[#9b87f5] to-nitebite-purple">
                 Fuel Your All-Nighters
               </h1>
-              <p className="text-lg sm:text-xl text-white/90">
+              <p className="text-lg sm:text-xl text-white/90 text-neutral-300">
                 Get snack boxes to (H1–H13) when you need them most.
               </p>
             </motion.div>
@@ -142,3 +143,4 @@ const Hero: React.FC<HeroProps> = ({ scrollToCuratedBoxes }) => {
 };
 
 export default Hero;
+
