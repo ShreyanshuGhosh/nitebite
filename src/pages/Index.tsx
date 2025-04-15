@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Organization, WithContext } from 'schema-dts';
 import NewNavbar from '@/components/NewNavbar';
@@ -11,17 +10,15 @@ import PromoBanner from '@/components/PromoBanner';
 import { motion, AnimatePresence } from 'framer-motion';
 import FeaturedProducts from '@/components/FeaturedProducts';
 import FloatingBox from '@/components/FloatingBox';
+import HelpSection from '@/components/HelpSection';
 
 const Index = () => {
-  // Scroll to top on page load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Reference to the curated boxes section
   const curatedBoxesRef = useRef<HTMLDivElement>(null);
 
-  // Function to scroll to curated boxes section
   const scrollToCuratedBoxes = () => {
     if (curatedBoxesRef.current) {
       curatedBoxesRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -61,6 +58,7 @@ const Index = () => {
           <div ref={curatedBoxesRef}>
             <CuratedBoxes />
           </div>
+          <HelpSection />
           <FeaturedProducts />
         </main>
         <FloatingBox />

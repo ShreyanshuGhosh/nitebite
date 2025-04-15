@@ -134,11 +134,26 @@ const BoxBuilder = () => {
       <NewNavbar transparent={false} />
       <div className="min-h-screen bg-nitebite-midnight pt-28 pb-16">
         <div className="container mx-auto px-4">
-          <Link to="/" className="inline-flex items-center gap-2 text-nitebite-text-muted hover:text-nitebite-purple transition-colors mb-6 glassmorphic-ghost-button py-2 px-4 rounded-full">
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Home</span>
-          </Link>
-          
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-8">
+            <Button
+              className="glassmorphic-ghost-button w-10 h-10 p-0 rounded-full"
+              asChild
+            >
+              <Link to="/">
+                <ArrowLeft className="w-5 h-5" />
+              </Link>
+            </Button>
+            
+            <Button
+              className="glassmorphic-button inline-flex items-center gap-2"
+              asChild
+            >
+              <Link to="/snack-boxes">
+                <Search className="w-4 h-4" /> Search Pre-Curated Boxes
+              </Link>
+            </Button>
+          </div>
+
           <CategoryTracker 
             selectedCategories={selectedCategories}
             total={totalPrice}

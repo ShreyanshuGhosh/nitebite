@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -54,64 +53,52 @@ const Hero: React.FC<HeroProps> = ({ scrollToCuratedBoxes }) => {
       ))}
 
       <div className="container relative z-10 pt-24 pb-12 mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex flex-col gap-6"
-          >
-            <motion.div variants={itemVariants} className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gradient bg-gradient-to-r from-[#9b87f5] to-nitebite-purple">
-                Fuel Your All-Nighters
-              </h1>
-              <p className="text-lg sm:text-xl text-white/90 text-neutral-300">
-                Get snack boxes to (H1–H13) when you need them most.
-              </p>
-            </motion.div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-col gap-6 max-w-2xl mx-auto text-center"
+        >
+          <motion.div variants={itemVariants} className="space-y-4">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gradient bg-gradient-to-r from-[#9b87f5] to-nitebite-purple">
+              Fuel Your All-Nighters
+            </h1>
+            <p className="text-lg sm:text-xl text-white/90 text-neutral-300">
+              Get snack boxes to (H1–H13) when you need them most.
+            </p>
+          </motion.div>
 
-            <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              className="glassmorphic-button rounded-full py-6 px-8 text-lg animate-glow-pulse-yellow w-full sm:w-auto"
+              asChild
+            >
+              <Link to="/snack-boxes">Quick Delivery</Link>
+            </Button>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="space-y-4">
+            <div className="flex items-center justify-center gap-2 text-white/70">
+              <Clock className="w-4 h-4 text-nitebite-yellow" />
+              <span>Delivery time: 20-30 min</span>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button 
+                className="glassmorphic-button rounded-full py-6 px-8 text-lg animate-glow-pulse-yellow w-full sm:w-auto"
+                onClick={scrollToCuratedBoxes}
+              >
+                See All Boxes
+              </Button>
               <Button 
                 className="glassmorphic-button rounded-full py-6 px-8 text-lg animate-glow-pulse-yellow w-full sm:w-auto"
                 asChild
               >
-                <Link to="/snack-boxes">Quick Delivery</Link>
+                <Link to="/box-builder">Craft Your Own Box</Link>
               </Button>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="space-y-4">
-              <div className="flex items-center gap-2 text-white/70">
-                <Clock className="w-4 h-4 text-nitebite-yellow" />
-                <span>Delivery time: 20-30 min</span>
-              </div>
-              
-              <div className="flex flex-col gap-3">
-                <p className="text-white/80">Browse from our curated snack boxes</p>
-                <Button 
-                  className="glassmorphic-ghost-button border border-nitebite-purple rounded-full py-2 px-4 text-sm text-nitebite-purple hover:text-white hover:bg-nitebite-purple/20 w-full sm:w-auto"
-                  onClick={scrollToCuratedBoxes}
-                >
-                  See All Boxes
-                </Button>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          <motion.div 
-            className="flex justify-center lg:justify-end items-center"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <div className="relative w-full max-w-[300px] lg:max-w-[400px]">
-              <img 
-                src="https://images.pexels.com/photos/31616946/pexels-photo-31616946.png?auto=compress&cs=tinysrgb&w=600&lazy=load" 
-                alt="NiteBite delivery box with snacks" 
-                className="w-full h-auto object-contain animate-float-box"
-              />
             </div>
           </motion.div>
-        </div>
+        </motion.div>
 
         <div className="mt-12">
           <VibeSelector />
@@ -143,4 +130,3 @@ const Hero: React.FC<HeroProps> = ({ scrollToCuratedBoxes }) => {
 };
 
 export default Hero;
-
