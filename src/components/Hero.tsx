@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -52,46 +53,46 @@ const Hero: React.FC<HeroProps> = ({ scrollToCuratedBoxes }) => {
         />
       ))}
 
-      <div className="container relative z-10 pt-24 pb-12 mx-auto px-4">
+      <div className="container relative z-10 pt-20 pb-8 mx-auto px-4 sm:pt-24 sm:pb-12">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col gap-6 max-w-2xl mx-auto text-center"
+          className="flex flex-col gap-5 max-w-2xl mx-auto text-center"
         >
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gradient bg-gradient-to-r from-[#9b87f5] to-nitebite-purple">
+          <motion.div variants={itemVariants} className="space-y-3">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gradient bg-gradient-to-r from-[#9b87f5] to-nitebite-purple">
               Fuel Your All-Nighters
             </h1>
-            <p className="text-lg sm:text-xl text-white/90 text-neutral-300">
+            <p className="text-base sm:text-lg text-white/90 text-neutral-300">
               Get snack boxes to (H1–H13) when you need them most.
             </p>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button 
-              className="glassmorphic-button rounded-full py-6 px-8 text-lg animate-glow-pulse-yellow w-full sm:w-auto"
+              className="glassmorphic-button rounded-full py-4 px-6 text-base animate-glow-pulse-yellow w-full sm:w-auto"
               asChild
             >
               <Link to="/snack-boxes">Quick Delivery</Link>
             </Button>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="space-y-4">
+          <motion.div variants={itemVariants} className="space-y-3">
             <div className="flex items-center justify-center gap-2 text-white/70">
               <Clock className="w-4 h-4 text-nitebite-yellow" />
-              <span>Delivery time: 20-30 min</span>
+              <span className="text-sm sm:text-base">Delivery time: 20-30 min</span>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <div className="flex flex-wrap gap-3 justify-center">
               <Button 
-                className="glassmorphic-button rounded-full py-6 px-8 text-lg animate-glow-pulse-yellow w-full sm:w-auto"
+                className="glassmorphic-button rounded-full py-4 px-6 text-base animate-glow-pulse-yellow flex-1 sm:flex-grow-0"
                 onClick={scrollToCuratedBoxes}
               >
                 See All Boxes
               </Button>
               <Button 
-                className="glassmorphic-button rounded-full py-6 px-8 text-lg animate-glow-pulse-yellow w-full sm:w-auto"
+                className="glassmorphic-button rounded-full py-4 px-6 text-base animate-glow-pulse-yellow flex-1 sm:flex-grow-0"
                 asChild
               >
                 <Link to="/box-builder">Craft Your Own Box</Link>
@@ -100,22 +101,22 @@ const Hero: React.FC<HeroProps> = ({ scrollToCuratedBoxes }) => {
           </motion.div>
         </motion.div>
 
-        <div className="mt-12">
+        <div className="mt-8 sm:mt-12">
           <VibeSelector />
         </div>
 
-        <div className="mt-12">
-          <div className="glassmorphic-card p-6 sm:p-8 rounded-xl">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+        <div className="mt-8 sm:mt-12">
+          <div className="glassmorphic-card p-4 sm:p-8 rounded-xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 items-center">
               <div className="md:col-span-2">
-                <h2 className="text-2xl sm:text-3xl font-bold mb-3 text-gradient-accent">
+                <h2 className="text-xl sm:text-2xl font-bold mb-2 text-gradient-accent">
                   Craft Your Perfect Stash
                 </h2>
-                <p className="text-base sm:text-lg text-white/80 mb-4">
+                <p className="text-sm sm:text-base text-white/80 mb-3">
                   Customize your snack box to your exact cravings, delivered to your doorstep!
                 </p>
                 <Button 
-                  className="glassmorphic-button rounded-full py-4 px-6 text-base w-full sm:w-auto"
+                  className="glassmorphic-button rounded-full py-3 px-5 text-sm sm:py-4 sm:px-6 sm:text-base w-full sm:w-auto"
                   asChild
                 >
                   <Link to="/box-builder">Customize Your Own Box</Link>

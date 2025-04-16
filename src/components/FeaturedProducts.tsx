@@ -1,3 +1,4 @@
+
 import React, { useRef, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
@@ -60,7 +61,7 @@ const FeaturedProducts: React.FC = () => {
             if (scrollLeft >= scrollWidth - clientWidth - 10) {
               scrollContainerRef.current.scrollTo({ left: 0, behavior: 'smooth' });
             } else {
-              scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+              scrollContainerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
             }
           }
         }, 5000);
@@ -93,24 +94,24 @@ const FeaturedProducts: React.FC = () => {
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+      scrollContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
       setIsAutoScrolling(false);
     }
   };
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+      scrollContainerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
       setIsAutoScrolling(false);
     }
   };
 
   if (isLoading) {
     return (
-      <div className="py-16 bg-nitebite-dark">
+      <div className="py-12 sm:py-16 bg-nitebite-dark">
         <div className="page-container">
           <div className="flex justify-center">
-            <div className="w-16 h-16 border-4 border-nitebite-accent rounded-full animate-spin border-t-transparent"></div>
+            <div className="w-12 h-12 sm:w-16 sm:h-16 border-4 border-nitebite-accent rounded-full animate-spin border-t-transparent"></div>
           </div>
         </div>
       </div>
@@ -118,18 +119,18 @@ const FeaturedProducts: React.FC = () => {
   }
 
   return (
-    <div id="featured-items" className="py-16 bg-nitebite-dark">
+    <div id="featured-items" className="py-12 sm:py-16 bg-nitebite-dark">
       <div className="page-container">
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-12">
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 sm:mb-12">
           <div>
-            <h2 className="text-3xl font-bold mb-2 animate-fade-in">Featured Items</h2>
-            <p className="text-nitebite-text-muted max-w-2xl animate-fade-in" style={{ animationDelay: '100ms' }}>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-2 animate-fade-in">Featured Items</h2>
+            <p className="text-sm sm:text-base text-nitebite-text-muted max-w-2xl animate-fade-in" style={{ animationDelay: '100ms' }}>
               Our most popular late-night snacks and beverages
             </p>
           </div>
           <Button 
             variant="ghost" 
-            className="text-nitebite-accent hover:text-nitebite-accent-light mt-4 md:mt-0 self-start animate-fade-in flex items-center gap-2 group glassmorphic-ghost-button"
+            className="text-nitebite-accent hover:text-nitebite-accent-light mt-3 md:mt-0 self-start animate-fade-in flex items-center gap-2 group glassmorphic-ghost-button"
             style={{ animationDelay: '200ms' }}
             onClick={handleSeeItemsClick}
           >
@@ -143,18 +144,18 @@ const FeaturedProducts: React.FC = () => {
             variant="ghost" 
             size="icon" 
             className={cn(
-              "absolute left-0 top-1/2 -translate-y-1/2 z-10 h-12 w-12 rounded-full bg-nitebite-dark-accent/80 backdrop-blur-lg border border-white/10 text-nitebite-text shadow-glow transition-all", 
+              "absolute left-0 top-1/2 -translate-y-1/2 z-10 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-nitebite-dark-accent/80 backdrop-blur-lg border border-white/10 text-nitebite-text shadow-glow transition-all", 
               canScrollLeft ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
             onClick={scrollLeft}
             aria-label="Scroll left"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={20} />
           </Button>
 
           <div 
             ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto py-4 px-2 scrollbar-none scroll-smooth"
+            className="flex gap-3 sm:gap-6 overflow-x-auto py-3 sm:py-4 px-1 sm:px-2 scrollbar-none scroll-smooth"
             style={{ scrollSnapType: 'x mandatory' }}
           >
             {products.map((product, index) => {
@@ -169,7 +170,7 @@ const FeaturedProducts: React.FC = () => {
               return (
                 <div 
                   key={product.id} 
-                  className="min-w-[250px] sm:min-w-[280px]"
+                  className="min-w-[200px] sm:min-w-[250px] md:min-w-[280px]"
                   style={{ scrollSnapAlign: 'start' }}
                 >
                   <ProductCard 
@@ -190,13 +191,13 @@ const FeaturedProducts: React.FC = () => {
             variant="ghost" 
             size="icon" 
             className={cn(
-              "absolute right-0 top-1/2 -translate-y-1/2 z-10 h-12 w-12 rounded-full bg-nitebite-dark-accent/80 backdrop-blur-lg border border-white/10 text-nitebite-text shadow-glow transition-all", 
+              "absolute right-0 top-1/2 -translate-y-1/2 z-10 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-nitebite-dark-accent/80 backdrop-blur-lg border border-white/10 text-nitebite-text shadow-glow transition-all", 
               canScrollRight ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
             onClick={scrollRight}
             aria-label="Scroll right"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={20} />
           </Button>
         </div>
       </div>

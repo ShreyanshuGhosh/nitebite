@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -50,17 +50,42 @@ const vibeOptions = [
 
 const VibeSelector: React.FC = () => {
   const isMobile = useIsMobile();
+  const carouselRef = useRef<HTMLDivElement>(null);
+  
+  // Auto-scroll for mobile view
+  useEffect(() => {
+    let scrollInterval: NodeJS.Timeout | null = null;
+    
+    if (isMobile && carouselRef.current) {
+      scrollInterval = setInterval(() => {
+        if (carouselRef.current) {
+          const scrollAmount = carouselRef.current.scrollLeft + 200;
+          const maxScroll = carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
+          
+          if (scrollAmount >= maxScroll) {
+            carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            carouselRef.current.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+          }
+        }
+      }, 5000);
+    }
+    
+    return () => {
+      if (scrollInterval) clearInterval(scrollInterval);
+    };
+  }, [isMobile]);
   
   return (
-    <div className="py-8 relative z-10">
+    <div className="py-6 sm:py-8 relative z-10">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-6"
+          className="mb-4 sm:mb-6"
         >
-          <h2 className="text-2xl md:text-3xl font-bold mb-2 text-nitebite-purple">Choose Your Vibe:</h2>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-nitebite-purple">Choose Your Vibe:</h2>
         </motion.div>
 
         <Carousel
@@ -70,11 +95,11 @@ const VibeSelector: React.FC = () => {
           }}
           className="relative"
         >
-          <CarouselContent className="-ml-2 md:-ml-4">
+          <CarouselContent className="-ml-2 md:-ml-4" ref={carouselRef}>
             {vibeOptions.map((vibe) => (
               <CarouselItem key={vibe.id} className="pl-2 md:pl-4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <Card className="overflow-hidden bg-nitebite-midnight border border-nitebite-purple/20 shadow-lg h-full flex flex-col">
-                  <div className="relative h-40 overflow-hidden">
+                  <div className="relative h-32 sm:h-40 overflow-hidden">
                     <img 
                       src={vibe.image} 
                       alt={vibe.name} 
@@ -84,14 +109,14 @@ const VibeSelector: React.FC = () => {
                       {vibe.emoji}
                     </div>
                   </div>
-                  <CardHeader className="px-4 py-3 space-y-1">
-                    <CardTitle className="text-xl text-nitebite-purple">{vibe.name}</CardTitle>
-                    <p className="text-sm text-white/70">{vibe.tagline}</p>
+                  <CardHeader className="px-3 sm:px-4 py-2 sm:py-3 space-y-1">
+                    <CardTitle className="text-lg sm:text-xl text-nitebite-purple">{vibe.name}</CardTitle>
+                    <p className="text-xs sm:text-sm text-white/70">{vibe.tagline}</p>
                   </CardHeader>
-                  <CardContent className="px-4 py-2 grow">
-                    <p className="text-2xl font-bold text-nitebite-yellow">{vibe.price}</p>
+                  <CardContent className="px-3 sm:px-4 py-1 sm:py-2 grow">
+                    <p className="text-xl sm:text-2xl font-bold text-nitebite-yellow">{vibe.price}</p>
                   </CardContent>
-                  <CardFooter className="px-4 pb-4 pt-0">
+                  <CardFooter className="px-3 sm:px-4 pb-3 sm:pb-4 pt-0">
                     <Button className="w-full glassmorphic-button text-sm py-1" asChild>
                       <Link to="/snack-boxes">Get This Box</Link>
                     </Button>

@@ -113,22 +113,22 @@ const CuratedBoxes = () => {
   };
 
   return (
-    <div className="py-20 bg-nitebite-midnight relative">
+    <div className="py-16 bg-nitebite-midnight relative">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-nitebite-purple">Curated Boxes on Demand</h2>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-nitebite-purple">Curated Boxes on Demand</h2>
+          <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto">
             Pre-packed boxes for every late-night scenario, delivered straight to your door
           </p>
         </motion.div>
 
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -137,30 +137,30 @@ const CuratedBoxes = () => {
             <motion.div 
               key={box.id}
               variants={cardVariants}
-              whileHover={{ y: -10, transition: { duration: 0.2 } }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
               className="flex flex-col h-full"
             >
               <Card className={`h-full overflow-hidden bg-gradient-to-b ${box.color} border-none shadow-lg`}>
-                <CardHeader className="pb-2">
-                  <div className={`w-16 h-16 rounded-full ${box.iconBg} flex items-center justify-center mb-4`}>
-                    <box.LucideIcon className="w-8 h-8 text-white" />
+                <CardHeader className="pb-1 sm:pb-2 p-3 sm:p-4">
+                  <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full ${box.iconBg} flex items-center justify-center mb-2 sm:mb-4`}>
+                    <box.LucideIcon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                   </div>
-                  <CardTitle className="text-2xl text-white">{box.title}</CardTitle>
-                  <CardDescription className="text-white/90 text-lg font-medium">
+                  <CardTitle className="text-lg sm:text-xl lg:text-2xl text-white">{box.title}</CardTitle>
+                  <CardDescription className="text-white/90 text-sm sm:text-base font-medium">
                     {box.tagline}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="text-white/80">
+                <CardContent className="text-white/80 p-3 sm:p-4 text-xs sm:text-sm">
                   <p>{box.description}</p>
                   
-                  <Accordion type="single" collapsible className="mt-4">
+                  <Accordion type="single" collapsible className="mt-2 sm:mt-4">
                     <AccordionItem value="items" className="border-white/20">
-                      <AccordionTrigger className="text-nitebite-yellow hover:text-nitebite-yellow/80 text-sm">
+                      <AccordionTrigger className="text-nitebite-yellow hover:text-nitebite-yellow/80 text-xs sm:text-sm py-2">
                         What's Inside?
                       </AccordionTrigger>
                       <AccordionContent>
                         <motion.ul 
-                          className="space-y-2 py-2"
+                          className="space-y-1 sm:space-y-2 py-1 sm:py-2"
                           initial="hidden"
                           animate="visible"
                           variants={{
@@ -174,16 +174,16 @@ const CuratedBoxes = () => {
                           {box.items.map((item, idx) => (
                             <motion.li 
                               key={idx} 
-                              className="flex items-center gap-2 text-sm"
+                              className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
                               variants={{
                                 hidden: { opacity: 0, x: -20 },
                                 visible: { opacity: 1, x: 0 }
                               }}
                             >
-                              <span className="text-xl">{item.image}</span>
+                              <span className="text-base sm:text-xl">{item.image}</span>
                               <div>
                                 <p className="font-medium">{item.name}</p>
-                                <p className="text-white/60 text-xs">{item.desc}</p>
+                                <p className="text-white/60 text-2xs sm:text-xs">{item.desc}</p>
                               </div>
                             </motion.li>
                           ))}
@@ -192,9 +192,9 @@ const CuratedBoxes = () => {
                     </AccordionItem>
                   </Accordion>
                 </CardContent>
-                <CardFooter className="flex-col gap-2 mt-auto">
+                <CardFooter className="flex-col gap-2 mt-auto p-3 sm:p-4">
                   <Button 
-                    className="w-full glassmorphic-button border border-nitebite-yellow/20"
+                    className="w-full glassmorphic-button border border-nitebite-yellow/20 text-xs sm:text-sm py-1 sm:py-2"
                     asChild
                   >
                     <Link to={`/snack-boxes`}>
@@ -203,7 +203,7 @@ const CuratedBoxes = () => {
                   </Button>
                   <Button 
                     variant="ghost" 
-                    className="w-full text-white hover:text-nitebite-yellow hover:bg-white/5"
+                    className="w-full text-white hover:text-nitebite-yellow hover:bg-white/5 text-xs sm:text-sm py-1"
                     asChild
                   >
                     <Link to={`/snack-boxes`}>
@@ -218,14 +218,14 @@ const CuratedBoxes = () => {
         
         {/* See All Boxes CTA */}
         <motion.div 
-          className="mt-12 text-center"
+          className="mt-8 sm:mt-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <Button 
             size="lg"
-            className="glassmorphic-button rounded-full py-6 px-8 text-lg animate-glow-pulse"
+            className="glassmorphic-button rounded-full py-4 sm:py-6 px-6 sm:px-8 text-base sm:text-lg animate-glow-pulse"
             asChild
           >
             <Link to="/snack-boxes" className="flex items-center gap-2">

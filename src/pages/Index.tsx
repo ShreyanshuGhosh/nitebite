@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { Organization, WithContext } from 'schema-dts';
 import NewNavbar from '@/components/NewNavbar';
@@ -18,6 +19,7 @@ const Index = () => {
   }, []);
 
   const curatedBoxesRef = useRef<HTMLDivElement>(null);
+  const helpSectionRef = useRef<HTMLDivElement>(null);
 
   const scrollToCuratedBoxes = () => {
     if (curatedBoxesRef.current) {
@@ -49,16 +51,19 @@ const Index = () => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
+        className="flex flex-col min-h-screen"
       >
         <SEO schema={schema} />
         <PromoBanner />
         <NewNavbar transparent={true} />
-        <main>
+        <main className="flex-grow">
           <Hero scrollToCuratedBoxes={scrollToCuratedBoxes} />
           <div ref={curatedBoxesRef}>
             <CuratedBoxes />
           </div>
-          <HelpSection />
+          <div ref={helpSectionRef}>
+            <HelpSection />
+          </div>
           <FeaturedProducts />
         </main>
         <FloatingBox />
