@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -81,12 +82,13 @@ const CuratedBoxes = () => {
       iconBg: 'bg-amber-500/20',
       items: [
         { name: 'Haldiram Aloo Bhujia', image: '🥨', price: 52, desc: 'Potato-based savory snack' },
+        { name: 'Haldiram Aloo Bhujia', image: '🥨', price: 52, desc: 'Potato-based savory snack' },
         { name: 'Bikaji Chowpati Bhelpuri', image: '🍲', price: 35, desc: 'Tangy puffed rice mix' },
         { name: 'Kurkure Chilli Chatka', image: '🌶️', price: 20, desc: 'Spicy corn puffs' },
         { name: 'Lays Chips', image: '🥔', price: 19, desc: 'Classic potato chips' },
         { name: 'Dark Fantasy Yumfills Pie', image: '🍪', price: 33, desc: 'Chocolate-filled cookies' }
       ],
-      price: 159,
+      price: 211,
       LucideIcon: Zap
     }
   ];

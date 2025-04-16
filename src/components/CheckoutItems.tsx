@@ -20,7 +20,7 @@ const CheckoutItems = () => {
         </p>
         <Button
           className="glassmorphic-button text-white"
-          onClick={() => navigate('/products')}
+          onClick={() => navigate('/snack-boxes')}
         >
           Browse Menu
         </Button>

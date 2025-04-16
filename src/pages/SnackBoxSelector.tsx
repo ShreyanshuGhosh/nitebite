@@ -59,10 +59,11 @@ const snackBoxes = [
     id: 'chakna-box',
     name: 'Hostel Hangout Pack',
     tagline: 'Perfect for sharing with friends.',
-    price: 159,
+    price: 211,
     image: 'https://images.unsplash.com/photo-1721322800607-8c38375eef04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80',
     highlights: ['🌶️', '🥨', '🧀'],
     items: [
+      { name: 'Haldiram Aloo Bhujia', image: '🥨', price: 52, originalPrice: 52, desc: 'Potato-based savory snack' },
       { name: 'Haldiram Aloo Bhujia', image: '🥨', price: 52, originalPrice: 52, desc: 'Potato-based savory snack' },
       { name: 'Bikaji Chowpati Bhelpuri', image: '🍲', price: 35, originalPrice: 35, desc: 'Tangy puffed rice mix' },
       { name: 'Kurkure Chilli Chatka', image: '🌶️', price: 20, originalPrice: 20, desc: 'Spicy corn puffs' },
