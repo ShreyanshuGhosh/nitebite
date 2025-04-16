@@ -25,11 +25,11 @@ const CuratedBoxes = () => {
       color: 'from-purple-900 to-purple-700',
       iconBg: 'bg-purple-500/20',
       items: [
-        { name: 'Chocolate Bar', image: '🍫', desc: 'Rich milk chocolate for sweet cravings' },
-        { name: 'Potato Chips', image: '🥔', desc: 'Crispy, salted potato chips' },
-        { name: 'Cheese Sticks', image: '🧀', desc: 'Cheesy, savory snacks' },
-        { name: 'Instant Noodles', image: '🍜', desc: 'Quick, hot noodles for instant satisfaction' }
+        { name: 'Monster Ultra Energy Drink', image: '🥤', price: 121, desc: 'Refreshing energy boost' },
+        { name: 'Haldiram Bhujiya', image: '🥨', price: 52, desc: 'Crunchy savory snack' },
+        { name: 'Kurkure Chilli Chatka', image: '🌶️', price: 20, desc: 'Spicy corn puffs' }
       ],
+      price: 169,
       LucideIcon: Users
     },
     {
@@ -43,30 +43,13 @@ const CuratedBoxes = () => {
       color: 'from-indigo-900 to-indigo-700',
       iconBg: 'bg-indigo-500/20',
       items: [
-        { name: 'Energy Drink', image: '🥤', desc: 'Caffeine boost to keep you alert' },
-        { name: 'Mixed Nuts', image: '🥜', desc: 'Brain-boosting protein' },
-        { name: 'Dark Chocolate', image: '🍫', desc: 'Antioxidant-rich mood booster' },
-        { name: 'Granola Bars', image: '🥣', desc: 'Sustained energy release' }
+        { name: 'Monster Energy Drink', image: '🥤', price: 115, desc: 'Caffeine boost to keep you alert' },
+        { name: 'Dark Fantasy Yumfills Pie (3 pieces)', image: '🍪', price: 33, desc: 'Sweet chocolate-filled cookies' },
+        { name: 'Kurkure Chilli Chatka', image: '🌶️', price: 20, desc: 'Spicy corn puffs' },
+        { name: 'Too Yumm Chilli Achari', image: '🥨', price: 18, desc: 'Tangy baked snack' }
       ],
+      price: 169,
       LucideIcon: BookOpen
-    },
-    {
-      id: 'chakna-box',
-      title: 'Hostel Hangout Pack',
-      tagline: 'Your instant party starter kit',
-      description: 'Shareable snacks for hangouts. Savory, crunchy, fun.',
-      cta: 'Start the Party',
-      ctaAlt: 'Share the Snacks',
-      icon: <span className="text-4xl">🎉</span>,
-      color: 'from-amber-900 to-amber-700',
-      iconBg: 'bg-amber-500/20',
-      items: [
-        { name: 'Spicy Mix', image: '🌶️', desc: 'Fiery spiced snack mix' },
-        { name: 'Pretzels', image: '🥨', desc: 'Crunchy, salted pretzels' },
-        { name: 'Nachos & Dip', image: '🧀', desc: 'Crispy chips with tangy dip' },
-        { name: 'Popcorn', image: '🍿', desc: 'Classic buttery popcorn' }
-      ],
-      LucideIcon: Zap
     },
     {
       id: 'healthy-choices',
@@ -79,12 +62,33 @@ const CuratedBoxes = () => {
       color: 'from-teal-900 to-teal-700',
       iconBg: 'bg-teal-500/20',
       items: [
-        { name: 'Dried Fruits', image: '🍇', desc: 'Natural sweetness and fiber' },
-        { name: 'Baked Chips', image: '🥔', desc: 'Less oil, all the flavor' },
-        { name: 'Protein Bars', image: '🏋️', desc: 'Protein-packed energy boost' },
-        { name: 'Seed Mix', image: '🌱', desc: 'Nutrient-dense mix of seeds' }
+        { name: 'Yogabar Multigrain Energy Bar (Pack of 2)', image: '🥜', price: 69, desc: 'Nutritious energy bar' },
+        { name: 'Dark Fantasy (Pack of 5)', image: '🍪', price: 35, desc: 'Chocolate-filled cookies' },
+        { name: 'Kitkat', image: '🍫', price: 35, desc: 'Crispy wafer chocolate' },
+        { name: 'Bikaji Soya Sticks Masala Munch', image: '🥢', price: 50, desc: 'Protein-rich savory snack' }
       ],
+      price: 169,
       LucideIcon: Leaf
+    },
+    {
+      id: 'chakna-box',
+      title: 'Hostel Hangout Pack',
+      tagline: 'Your instant party starter kit',
+      description: 'Shareable snacks for hangouts. Savory, crunchy, fun.',
+      cta: 'Start the Party',
+      ctaAlt: 'Share the Snacks',
+      icon: <span className="text-4xl">🎉</span>,
+      color: 'from-amber-900 to-amber-700',
+      iconBg: 'bg-amber-500/20',
+      items: [
+        { name: 'Haldiram Aloo Bhujia', image: '🥨', price: 52, desc: 'Potato-based savory snack' },
+        { name: 'Bikaji Chowpati Bhelpuri', image: '🍲', price: 35, desc: 'Tangy puffed rice mix' },
+        { name: 'Kurkure Chilli Chatka', image: '🌶️', price: 20, desc: 'Spicy corn puffs' },
+        { name: 'Lays Chips', image: '🥔', price: 19, desc: 'Classic potato chips' },
+        { name: 'Dark Fantasy Yumfills Pie', image: '🍪', price: 33, desc: 'Chocolate-filled cookies' }
+      ],
+      price: 139,
+      LucideIcon: Zap
     }
   ];
 
@@ -174,20 +178,30 @@ const CuratedBoxes = () => {
                           {box.items.map((item, idx) => (
                             <motion.li 
                               key={idx} 
-                              className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
+                              className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm py-1"
                               variants={{
                                 hidden: { opacity: 0, x: -20 },
                                 visible: { opacity: 1, x: 0 }
                               }}
                             >
                               <span className="text-base sm:text-xl">{item.image}</span>
-                              <div>
+                              <div className="flex-grow">
                                 <p className="font-medium">{item.name}</p>
                                 <p className="text-white/60 text-2xs sm:text-xs">{item.desc}</p>
+                              </div>
+                              <div className="text-right">
+                                <p className="text-nitebite-text-muted text-2xs sm:text-xs line-through">₹{item.price}</p>
+                                <p className="text-nitebite-highlight text-xs sm:text-sm font-medium">Special</p>
                               </div>
                             </motion.li>
                           ))}
                         </motion.ul>
+                        
+                        {/* Total box price at the bottom */}
+                        <div className="mt-2 pt-2 border-t border-white/10 flex justify-between items-center">
+                          <span className="text-nitebite-yellow text-xs font-medium">Box Price:</span>
+                          <span className="text-nitebite-yellow font-bold">₹{box.price}</span>
+                        </div>
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>

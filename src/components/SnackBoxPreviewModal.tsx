@@ -7,7 +7,9 @@ import { X, ShoppingCart } from 'lucide-react';
 interface SnackBoxItem {
   name: string;
   image: string;
-  desc: string;
+  price: number;
+  originalPrice?: number;
+  desc?: string;
 }
 
 interface SnackBoxData {
@@ -31,6 +33,9 @@ const SnackBoxPreviewModal: React.FC<SnackBoxPreviewModalProps> = ({ box, onClos
     if (e.target === e.currentTarget) onClose();
   };
 
+  // Calculate total price from individual items
+  const totalItemsPrice = box.items.reduce((total, item) => total + item.price, 0);
+
   return (
     <AnimatePresence>
       <motion.div
@@ -45,7 +50,7 @@ const SnackBoxPreviewModal: React.FC<SnackBoxPreviewModalProps> = ({ box, onClos
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           transition={{ type: "spring", damping: 20 }}
-          className="bg-nitebite-dark-accent w-full max-w-lg rounded-xl overflow-hidden shadow-2xl border border-white/10"
+          className="bg-nitebite-dark-accent w-full max-w-lg rounded-xl overflow-hidden shadow-2xl border border-white/10 max-h-[90vh] flex flex-col"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Modal Header with Image */}
@@ -53,7 +58,7 @@ const SnackBoxPreviewModal: React.FC<SnackBoxPreviewModalProps> = ({ box, onClos
             <img 
               src={box.image} 
               alt={box.name}
-              className="w-full h-48 object-cover"
+              className="w-full h-36 sm:h-48 object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-nitebite-dark to-transparent"></div>
             <Button 
@@ -67,8 +72,8 @@ const SnackBoxPreviewModal: React.FC<SnackBoxPreviewModalProps> = ({ box, onClos
           </div>
           
           {/* Modal Content */}
-          <div className="p-6">
-            <h2 className="text-2xl font-bold text-nitebite-purple mb-1">{box.name}</h2>
+          <div className="p-4 sm:p-6 overflow-y-auto flex-grow">
+            <h2 className="text-xl sm:text-2xl font-bold text-nitebite-purple mb-1">{box.name}</h2>
             <p className="text-nitebite-text-muted mb-4">{box.tagline}</p>
             
             <div className="mb-4">
@@ -82,28 +87,45 @@ const SnackBoxPreviewModal: React.FC<SnackBoxPreviewModalProps> = ({ box, onClos
                     transition={{ delay: index * 0.1 }}
                     className="flex items-center gap-3 bg-nitebite-midnight/60 p-3 rounded-lg"
                   >
-                    <span className="text-2xl bg-nitebite-dark-accent w-10 h-10 flex items-center justify-center rounded-md">
+                    <div className="text-2xl bg-nitebite-dark-accent w-10 h-10 flex items-center justify-center rounded-md">
                       {item.image}
-                    </span>
-                    <div>
+                    </div>
+                    <div className="flex-grow">
                       <p className="font-medium">{item.name}</p>
-                      <p className="text-xs text-nitebite-text-muted">{item.desc}</p>
+                      {item.desc && <p className="text-xs text-nitebite-text-muted">{item.desc}</p>}
+                    </div>
+                    <div className="text-right">
+                      {item.originalPrice && (
+                        <p className="text-xs text-nitebite-text-muted line-through">₹{item.originalPrice}</p>
+                      )}
+                      <p className="text-nitebite-highlight font-medium">₹{item.price}</p>
                     </div>
                   </motion.li>
                 ))}
               </ul>
             </div>
             
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-nitebite-accent font-bold text-2xl">₹{box.price.toFixed(2)}</span>
+            <div className="flex flex-col gap-1 mb-4 bg-nitebite-purple/10 p-3 rounded-lg">
+              <div className="flex justify-between items-center">
+                <span className="text-nitebite-text-muted">Total Value:</span>
+                <span className="text-nitebite-text-muted">₹{totalItemsPrice.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="font-bold text-nitebite-accent">Your Price:</span>
+                <span className="text-nitebite-accent font-bold text-xl">₹{box.price.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between items-center text-xs text-green-500">
+                <span>You Save:</span>
+                <span>₹{(totalItemsPrice - box.price).toFixed(2)} ({Math.round(((totalItemsPrice - box.price) / totalItemsPrice) * 100)}%)</span>
+              </div>
             </div>
             
             {/* Action Buttons */}
             <Button 
-              className="w-full py-6 bg-gradient-to-r from-nitebite-green to-teal-500 hover:opacity-90 text-white font-medium text-lg"
+              className="w-full py-5 sm:py-6 bg-gradient-to-r from-nitebite-green to-teal-500 hover:opacity-90 text-white font-medium text-base sm:text-lg"
               onClick={onAddToCart}
             >
-              <ShoppingCart className="w-5 h-5 mr-2" /> Add to Cart
+              <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 mr-2" /> Add to Cart
             </Button>
           </div>
         </motion.div>

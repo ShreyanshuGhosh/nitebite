@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -19,56 +18,56 @@ const snackBoxes = [
     id: 'midnight-munchies',
     name: 'Midnight Munchies',
     tagline: 'Sweet, salty & satisfying essentials.',
-    price: 299,
+    price: 169,
     image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80',
     highlights: ['🍕', '🥤', '🍫'],
     items: [
-      { name: 'Chocolate Bar', image: '🍫', desc: 'Rich milk chocolate for sweet cravings' },
-      { name: 'Potato Chips', image: '🥔', desc: 'Crispy, salted potato chips' },
-      { name: 'Cheese Sticks', image: '🧀', desc: 'Cheesy, savory snacks' },
-      { name: 'Instant Noodles', image: '🍜', desc: 'Quick, hot noodles for instant satisfaction' }
+      { name: 'Monster Ultra Energy Drink', image: '🥤', price: 121, originalPrice: 121, desc: 'Refreshing energy boost' },
+      { name: 'Haldiram Bhujiya', image: '🥨', price: 52, originalPrice: 52, desc: 'Crunchy savory snack' },
+      { name: 'Kurkure Chilli Chatka', image: '🌶️', price: 20, originalPrice: 20, desc: 'Spicy corn puffs' }
     ]
   },
   {
     id: 'study-fuel',
     name: 'Study Fuel Pack',
     tagline: 'Brain food for late nights.',
-    price: 349,
+    price: 169,
     image: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80',
     highlights: ['☕', '🍪', '🥜'],
     items: [
-      { name: 'Energy Drink', image: '🥤', desc: 'Caffeine boost to keep you alert' },
-      { name: 'Mixed Nuts', image: '🥜', desc: 'Brain-boosting protein' },
-      { name: 'Dark Chocolate', image: '🍫', desc: 'Antioxidant-rich mood booster' },
-      { name: 'Granola Bars', image: '🥣', desc: 'Sustained energy release' }
+      { name: 'Monster Energy Drink', image: '🥤', price: 115, originalPrice: 115, desc: 'Caffeine boost to keep you alert' },
+      { name: 'Dark Fantasy Yumfills Pie (3 pieces)', image: '🍪', price: 33, originalPrice: 33, desc: 'Sweet chocolate-filled cookies' },
+      { name: 'Kurkure Chilli Chatka', image: '🌶️', price: 20, originalPrice: 20, desc: 'Spicy corn puffs' },
+      { name: 'Too Yumm Chilli Achari', image: '🥨', price: 18, originalPrice: 18, desc: 'Tangy baked snack' }
     ]
   },
   {
     id: 'healthy-choices',
     name: 'Healthy Choices',
     tagline: 'Guilt-free(ish) snack options.',
-    price: 399,
+    price: 169,
     image: 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80',
     highlights: ['🥗', '🥤', '🍎'],
     items: [
-      { name: 'Dried Fruits', image: '🍇', desc: 'Natural sweetness and fiber' },
-      { name: 'Baked Chips', image: '🥔', desc: 'Less oil, all the flavor' },
-      { name: 'Protein Bars', image: '🏋️', desc: 'Protein-packed energy boost' },
-      { name: 'Seed Mix', image: '🌱', desc: 'Nutrient-dense mix of seeds' }
+      { name: 'Yogabar Multigrain Energy Bar (Pack of 2)', image: '🥜', price: 69, originalPrice: 69, desc: 'Nutritious energy bar' },
+      { name: 'Dark Fantasy (Pack of 5)', image: '🍪', price: 35, originalPrice: 35, desc: 'Chocolate-filled cookies' },
+      { name: 'Kitkat', image: '🍫', price: 35, originalPrice: 35, desc: 'Crispy wafer chocolate' },
+      { name: 'Bikaji Soya Sticks Masala Munch', image: '🥢', price: 50, originalPrice: 50, desc: 'Protein-rich savory snack' }
     ]
   },
   {
     id: 'chakna-box',
     name: 'Hostel Hangout Pack',
     tagline: 'Perfect for sharing with friends.',
-    price: 449,
+    price: 139,
     image: 'https://images.unsplash.com/photo-1721322800607-8c38375eef04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80',
     highlights: ['🌶️', '🥨', '🧀'],
     items: [
-      { name: 'Spicy Mix', image: '🌶️', desc: 'Fiery spiced snack mix' },
-      { name: 'Pretzels', image: '🥨', desc: 'Crunchy, salted pretzels' },
-      { name: 'Nachos & Dip', image: '🧀', desc: 'Crispy chips with tangy dip' },
-      { name: 'Popcorn', image: '🍿', desc: 'Classic buttery popcorn' }
+      { name: 'Haldiram Aloo Bhujia', image: '🥨', price: 52, originalPrice: 52, desc: 'Potato-based savory snack' },
+      { name: 'Bikaji Chowpati Bhelpuri', image: '🍲', price: 35, originalPrice: 35, desc: 'Tangy puffed rice mix' },
+      { name: 'Kurkure Chilli Chatka', image: '🌶️', price: 20, originalPrice: 20, desc: 'Spicy corn puffs' },
+      { name: 'Lays Chips', image: '🥔', price: 19, originalPrice: 19, desc: 'Classic potato chips' },
+      { name: 'Dark Fantasy Yumfills Pie', image: '🍪', price: 33, originalPrice: 33, desc: 'Chocolate-filled cookies' }
     ]
   }
 ];
@@ -203,9 +202,21 @@ const SnackBoxSelector = () => {
                       ))}
                     </div>
                     
-                    {/* Price */}
-                    <div className="text-xl md:text-2xl font-bold text-nitebite-accent">
-                      ₹{box.price.toFixed(2)}
+                    {/* Calculate total value */}
+                    <div className="mb-3">
+                      <div className="text-xs text-nitebite-text-muted flex justify-between">
+                        <span>Total Value:</span>
+                        <span className="line-through">
+                          ₹{box.items.reduce((total, item) => total + item.originalPrice, 0).toFixed(2)}
+                        </span>
+                      </div>
+                      <div className="text-xl md:text-2xl font-bold text-nitebite-accent flex justify-between items-center">
+                        <span>Box Price:</span>
+                        <span>₹{box.price.toFixed(2)}</span>
+                      </div>
+                      <div className="text-xs text-green-500 text-right">
+                        Save {Math.round(((box.items.reduce((total, item) => total + item.originalPrice, 0) - box.price) / box.items.reduce((total, item) => total + item.originalPrice, 0)) * 100)}%
+                      </div>
                     </div>
                   </CardContent>
                   
