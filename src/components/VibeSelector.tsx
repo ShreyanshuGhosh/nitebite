@@ -18,7 +18,7 @@ const vibeOptions = [
     id: 'midnight-munchies',
     name: 'Midnight Munchies',
     tagline: 'Conquer those 2 AM cravings',
-    price: '₹499',
+    price: '₹193',
     image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80',
     emoji: '🍕'
   },
@@ -26,7 +26,7 @@ const vibeOptions = [
     id: 'study-night-pack',
     name: 'Study Night Pack',
     tagline: 'Power through papers & exams',
-    price: '₹599',
+    price: '₹186',
     image: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80',
     emoji: '🧠'
   },
@@ -34,7 +34,7 @@ const vibeOptions = [
     id: 'hostel-hangout-pack',
     name: 'Hostel Hangout Pack',
     tagline: 'Your instant party starter kit',
-    price: '₹799',
+    price: '₹159',
     image: 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80',
     emoji: '🎉'
   },
@@ -42,7 +42,7 @@ const vibeOptions = [
     id: 'smart-snacker',
     name: 'Smart Snacker',
     tagline: 'Snack smart, not hard',
-    price: '₹649',
+    price: '₹189',
     image: 'https://images.unsplash.com/photo-1721322800607-8c38375eef04?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80',
     emoji: '🥗'
   }

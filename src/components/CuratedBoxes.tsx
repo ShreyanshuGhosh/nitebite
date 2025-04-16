@@ -29,7 +29,7 @@ const CuratedBoxes = () => {
         { name: 'Haldiram Bhujiya', image: '🥨', price: 52, desc: 'Crunchy savory snack' },
         { name: 'Kurkure Chilli Chatka', image: '🌶️', price: 20, desc: 'Spicy corn puffs' }
       ],
-      price: 169,
+      price: 193,
       LucideIcon: Users
     },
     {
@@ -48,7 +48,7 @@ const CuratedBoxes = () => {
         { name: 'Kurkure Chilli Chatka', image: '🌶️', price: 20, desc: 'Spicy corn puffs' },
         { name: 'Too Yumm Chilli Achari', image: '🥨', price: 18, desc: 'Tangy baked snack' }
       ],
-      price: 169,
+      price: 186,
       LucideIcon: BookOpen
     },
     {
@@ -67,7 +67,7 @@ const CuratedBoxes = () => {
         { name: 'Kitkat', image: '🍫', price: 35, desc: 'Crispy wafer chocolate' },
         { name: 'Bikaji Soya Sticks Masala Munch', image: '🥢', price: 50, desc: 'Protein-rich savory snack' }
       ],
-      price: 169,
+      price: 189,
       LucideIcon: Leaf
     },
     {
@@ -87,7 +87,7 @@ const CuratedBoxes = () => {
         { name: 'Lays Chips', image: '🥔', price: 19, desc: 'Classic potato chips' },
         { name: 'Dark Fantasy Yumfills Pie', image: '🍪', price: 33, desc: 'Chocolate-filled cookies' }
       ],
-      price: 139,
+      price: 159,
       LucideIcon: Zap
     }
   ];

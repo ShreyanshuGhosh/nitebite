@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -18,7 +19,7 @@ const snackBoxes = [
     id: 'midnight-munchies',
     name: 'Midnight Munchies',
     tagline: 'Sweet, salty & satisfying essentials.',
-    price: 169,
+    price: 193,
     image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80',
     highlights: ['🍕', '🥤', '🍫'],
     items: [
@@ -31,7 +32,7 @@ const snackBoxes = [
     id: 'study-fuel',
     name: 'Study Fuel Pack',
     tagline: 'Brain food for late nights.',
-    price: 169,
+    price: 186,
     image: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80',
     highlights: ['☕', '🍪', '🥜'],
     items: [
@@ -45,7 +46,7 @@ const snackBoxes = [
     id: 'healthy-choices',
     name: 'Healthy Choices',
     tagline: 'Guilt-free(ish) snack options.',
-    price: 169,
+    price: 189,
     image: 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80',
     highlights: ['🥗', '🥤', '🍎'],
     items: [
@@ -59,7 +60,7 @@ const snackBoxes = [
     id: 'chakna-box',
     name: 'Hostel Hangout Pack',
     tagline: 'Perfect for sharing with friends.',
-    price: 139,
+    price: 159,
     image: 'https://images.unsplash.com/photo-1721322800607-8c38375eef04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80',
     highlights: ['🌶️', '🥨', '🧀'],
     items: [

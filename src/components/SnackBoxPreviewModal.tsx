@@ -95,9 +95,6 @@ const SnackBoxPreviewModal: React.FC<SnackBoxPreviewModalProps> = ({ box, onClos
                       {item.desc && <p className="text-xs text-nitebite-text-muted">{item.desc}</p>}
                     </div>
                     <div className="text-right">
-                      {item.originalPrice && (
-                        <p className="text-xs text-nitebite-text-muted line-through">₹{item.originalPrice}</p>
-                      )}
                       <p className="text-nitebite-highlight font-medium">₹{item.price}</p>
                     </div>
                   </motion.li>
@@ -107,16 +104,8 @@ const SnackBoxPreviewModal: React.FC<SnackBoxPreviewModalProps> = ({ box, onClos
             
             <div className="flex flex-col gap-1 mb-4 bg-nitebite-purple/10 p-3 rounded-lg">
               <div className="flex justify-between items-center">
-                <span className="text-nitebite-text-muted">Total Value:</span>
-                <span className="text-nitebite-text-muted">₹{totalItemsPrice.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="font-bold text-nitebite-accent">Your Price:</span>
+                <span className="font-bold text-nitebite-accent">Box Price:</span>
                 <span className="text-nitebite-accent font-bold text-xl">₹{box.price.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between items-center text-xs text-green-500">
-                <span>You Save:</span>
-                <span>₹{(totalItemsPrice - box.price).toFixed(2)} ({Math.round(((totalItemsPrice - box.price) / totalItemsPrice) * 100)}%)</span>
               </div>
             </div>
             
