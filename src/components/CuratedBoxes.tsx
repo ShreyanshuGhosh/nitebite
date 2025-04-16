@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -190,8 +189,7 @@ const CuratedBoxes = () => {
                                 <p className="text-white/60 text-2xs sm:text-xs">{item.desc}</p>
                               </div>
                               <div className="text-right">
-                                <p className="text-nitebite-text-muted text-2xs sm:text-xs line-through">₹{item.price}</p>
-                                <p className="text-nitebite-highlight text-xs sm:text-sm font-medium">Special</p>
+                                <p className="text-nitebite-highlight text-xs sm:text-sm font-medium">₹{item.price}</p>
                               </div>
                             </motion.li>
                           ))}

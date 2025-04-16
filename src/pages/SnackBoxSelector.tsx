@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -203,20 +202,11 @@ const SnackBoxSelector = () => {
                       ))}
                     </div>
                     
-                    {/* Calculate total value */}
+                    {/* Price - Updated to show only the box price without savings calculation */}
                     <div className="mb-3">
-                      <div className="text-xs text-nitebite-text-muted flex justify-between">
-                        <span>Total Value:</span>
-                        <span className="line-through">
-                          ₹{box.items.reduce((total, item) => total + item.originalPrice, 0).toFixed(2)}
-                        </span>
-                      </div>
                       <div className="text-xl md:text-2xl font-bold text-nitebite-accent flex justify-between items-center">
                         <span>Box Price:</span>
                         <span>₹{box.price.toFixed(2)}</span>
-                      </div>
-                      <div className="text-xs text-green-500 text-right">
-                        Save {Math.round(((box.items.reduce((total, item) => total + item.originalPrice, 0) - box.price) / box.items.reduce((total, item) => total + item.originalPrice, 0)) * 100)}%
                       </div>
                     </div>
                   </CardContent>

@@ -33,9 +33,6 @@ const SnackBoxPreviewModal: React.FC<SnackBoxPreviewModalProps> = ({ box, onClos
     if (e.target === e.currentTarget) onClose();
   };
 
-  // Calculate total price from individual items
-  const totalItemsPrice = box.items.reduce((total, item) => total + item.price, 0);
-
   return (
     <AnimatePresence>
       <motion.div
